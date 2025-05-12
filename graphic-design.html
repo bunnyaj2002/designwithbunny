@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Graphic Design Gallery | Design With Bunny</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Poppins:wght@300;400;500;600&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-color: #ff6f91;
+      --secondary-color: #00f9ff;
+      --dark-bg: lab(97.31% 0.54 -1.45);
+      --light-text: #030303;
+      --accent-color: #e4dede;
+      --section-bg: hsla(263, 88%, 27%, 0.95);
+    }
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--dark-bg);
+  color: var(--light-text);
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.6;
+}
+
+.navbar {
+  background-color: var(--dark-bg);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 3rem;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  border-bottom: 1px solid rgba(255, 111, 145, 0.2);
+}
+
+.navbar h2 {
+  font-family: 'Dancing Script', cursive;
+  color: var(--primary-color);
+  font-size: 2.2rem;
+  font-weight: 600;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+}
+
+.nav-links button {
+  background: none;
+  border: none;
+  color: var(--light-text);
+  font-weight: 500;
+  font-family: 'Montserrat', sans-serif;
+  cursor: pointer;
+  font-size: 1.05rem;
+  transition: all 0.3s ease;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+}
+
+.nav-links button:hover {
+  color: var(--primary-color);
+  transform: translateY(-2px);
+}
+
+.nav-links .active {
+  color: var(--primary-color);
+  border-bottom: 2px solid var(--primary-color);
+}
+
+.gallery-header {
+  text-align: center;
+  padding: 4rem 2rem 2rem;
+  background: linear-gradient(rgba(14, 14, 26, 0.9), rgba(14, 14, 26, 0.7));
+}
+
+.gallery-header h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  color: var(--primary-color);
+}
+
+.gallery-header p {
+  font-size: 1.2rem;
+  max-width: 700px;
+  margin: 0 auto;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.gallery-container {
+  padding: 2rem;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.gallery-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(238, 236, 236, 0.4);
+}
+
+.gallery-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.02);
+}
+
+.gallery-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem;
+  color: white;
+  z-index: 2;
+  background: rgba(250, 248, 248, 0.973);
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.gallery-item:hover .gallery-caption {
+  opacity: 1;
+}
+
+footer {
+  background: var(--dark-bg);
+  padding: 3rem 2rem;
+  text-align: center;
+  margin-top: 3rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-social {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.footer-social a {
+  font-size: 1.3rem;
+  color: rgba(255, 255, 255, 0.7);
+  transition: all 0.3s ease;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.footer-social a:hover {
+  color: var(--primary-color);
+  background: rgba(255, 111, 145, 0.1);
+  transform: translateY(-3px);
+}
+
+.copyright {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.9rem;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.logo-img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--primary-color);
+  box-shadow: 0 0 15px rgba(255, 111, 145, 0.4);
+  margin-right: 1rem;
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 1rem;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .nav-links {
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+  
+  .gallery-header h1 {
+    font-size: 2.2rem;
+  }
+  
+  .gallery-header p {
+    font-size: 1rem;
+  }
+  
+  .gallery-container {
+    padding: 1rem;
+  }
+  
+  .gallery {
+    gap: 1.5rem;
+  }
+}
+
+
+  </style>
+</head>
+<body>
+<div class="navbar">
+  <div class="logo-container">
+    <img src="bunny logo new.jpg" alt="Bunny Logo" class="logo-img">
+    <h2>Design With Bunny</h2>
+  </div>
+  <div class="nav-links">
+    <button onclick="window.location.href='index.html'">Home</button>
+    <button onclick="window.location.href='graphic-design.html'" class="active">Graphic Design</button>
+    <button onclick="window.location.href='video-design.html'">Video Editing</button>
+    <button onclick="window.location.href='contact.html'">Contact</button>
+  </div>
+</div>
+
+<div class="gallery-header">
+  <h1>Graphic Design Portfolio</h1>
+  <p>Explore my collection of creative designs, branding projects, and visual concepts that showcase my design philosophy and technical skills.</p>
+</div>
+
+<div class="gallery-container">
+  <div class="gallery">
+    <div class="gallery-item">
+      <img src="GRAPG/iloveimg-resized (2)/1.png" alt="Design Work 1">
+      <div class="gallery-caption">Project Title 1</div>
+    </div>
+    <div class="gallery-item">
+      <img src="GRAPG/iloveimg-resized (2)/2.png" alt="Design Work 2">
+      <div class="gallery-caption">Project Title 2</div>
+    </div>
+    <div class="gallery-item">
+      <img src="GRAPG/iloveimg-resized (2)/3.png" alt="Design Work 3">
+      <div class="gallery-caption">Project Title 3</div>
+    </div>
+    <div class="gallery-item">
+      <img src="GRAPG/iloveimg-resized (2)/4.png" alt="Design Work 4">
+      <div class="gallery-caption">Project Title 4</div>
+    </div>
+    <div class="gallery-item">
+      <img src="GRAPG/iloveimg-resized (2)/5.png" alt="Design Work 5">
+      <div class="gallery-caption">Project Title 5</div>
+    </div>
+    <div class="gallery-item">
+      <img src="GRAPG/iloveimg-resized (2)/6.png" alt="Design Work 6">
+      <div class="gallery-caption">Project Title 6</div>
+    </div>
+    <div class="gallery-item">
+      <img src="GRAPG/iloveimg-resized (2)/7.png" alt="Design Work 7">
+      <div class="gallery-caption">Project Title 7</div>
+    </div>
+    <div class="gallery-item">
+      <img src="GRAPG/iloveimg-resized (2)/8.png" alt="Design Work 8">
+      <div class="gallery-caption">Project Title 8</div>
+    </div>
+    <div class="gallery-item">
+      <img src="GRAPG/iloveimg-resized (2)/9.png" alt="Design Work 9">
+      <div class="gallery-caption">Project Title 9</div>
+    </div>
+    <div class="gallery-item">
+      <img src="GRAPG/iloveimg-resized (2)/10.png" alt="Design Work 10">
+      <div class="gallery-caption">Project Title 10</div>
+    </div>
+    <div class="gallery-item">
+      <img src="GRAPG/iloveimg-resized (2)/11.png" alt="Design Work 11">
+      <div class="gallery-caption">Project Title 11</div>
+    </div>
+    <div class="gallery-item">
+      <img src="GRAPG/iloveimg-resized (2)/12.png" alt="Design Work 12">
+      <div class="gallery-caption">Project Title 12</div>
+    </div>
+    <div class="gallery-item">
+      <img src="GRAPG/iloveimg-resized (2)/13.png" alt="Design Work 13">
+      <div class="gallery-caption">Project Title 13</div>
+    </div>
+    <div class="gallery-item">
+      <img src="GRAPG/iloveimg-resized (2)/14.png" alt="Design Work 14">
+      <div class="gallery-caption">Project Title 14</div>
+    </div>
+    <div class="gallery-item">
+      <img src="GRAPG/iloveimg-resized (2)/15.png" alt="Design Work 15">
+      <div class="gallery-caption">Project Title 15</div>
+    </div>
+    <div class="gallery-item">
+      <img src="GRAPG/iloveimg-resized (2)/16.png" alt="Design Work 16">
+      <div class="gallery-caption">Project Title 16</div>
+    </div>
+    <div class="gallery-item">
+      <img src="GRAPG/iloveimg-resized (2)/17.png" alt="Design Work 17">
+      <div class="gallery-caption">Project Title 17</div>
+    </div>
+    <div class="gallery-item">
+      <img src="GRAPG/iloveimg-resized (2)/18.png" alt="Design Work 18">
+      <div class="gallery-caption">Project Title 18</div>
+    </div>
+    <div class="gallery-item">
+      <img src="GRAPG/iloveimg-resized (2)/19.png" alt="Design Work 19">
+      <div class="gallery-caption">Project Title 19</div>
+    </div>
+    <div class="gallery-item">
+      <img src="GRAPG/iloveimg-resized (2)/20.png" alt="Design Work 20">
+      <div class="gallery-caption">Project Title 20</div>
+    </div>
+    <div class="gallery-item">
+      <img src="GRAPG/iloveimg-resized (2)/21.png" alt="Design Work 21">
+      <div class="gallery-caption">Project Title 21</div>
+    </div>
+    <div class="gallery-item">
+      <img src="GRAPG/iloveimg-resized (2)/22.png" alt="Design Work 22">
+      <div class="gallery-caption">Project Title 22</div>
+    </div>
+    <div class="gallery-item">
+      <img src="GRAPG/iloveimg-resized (2)/23.png" alt="Design Work 23">
+      <div class="gallery-caption">Project Title 23</div>
+    </div>
+    <div class="gallery-item">
+      <img src="GRAPG/iloveimg-resized (2)/24.png" alt="Design Work 24">
+      <div class="gallery-caption">Project Title 24</div>
+    </div>
+    <div class="gallery-item">
+      <img src="GRAPG/iloveimg-resized (2)/25.png" alt="Design Work 25">
+      <div class="gallery-caption">Project Title 25</div>
+    </div>
+    <div class="gallery-item">
+      <img src="GRAPG/iloveimg-resized (2)/26.png" alt="Design Work 26">
+      <div class="gallery-caption">Project Title 26</div>
+    </div>
+    <div class="gallery-item">
+      <img src="GRAPG/iloveimg-resized (2)/27.png" alt="Design Work 27">
+      <div class="gallery-caption">Project Title 27</div>
+    </div>
+    <div class="gallery-item">
+      <img src="GRAPG/iloveimg-resized (2)/28.png" alt="Design Work 28">
+      <div class="gallery-caption">Project Title 28</div>
+    </div>
+    <div class="gallery-item">
+      <img src="GRAPG/iloveimg-resized (2)/29.png" alt="Design Work 29">
+      <div class="gallery-caption">Project Title 29</div>
+    </div>
+    <div class="gallery-item">
+      <img src="GRAPG/iloveimg-resized (2)/30.png" alt="Design Work 30">
+      <div class="gallery-caption">Project Title 30</div>
+    </div>
+    <div class="gallery-item">
+      <img src="GRAPG/iloveimg-resized (2)/31.png" alt="Design Work 31">
+      <div class="gallery-caption">Project Title 31</div>
+    </div>
+    <div class="gallery-item">
+      <img src="GRAPG/iloveimg-resized (2)/32.png" alt="Design Work 32">
+      <div class="gallery-caption">Project Title 32</div>
+    </div>
+    <div class="gallery-item">
+      <img src="GRAPG/iloveimg-resized (2)/33.png" alt="Design Work 33">
+      <div class="gallery-caption">Project Title 33</div>
+    </div>
+    <div class="gallery-item">
+      <img src="GRAPG/iloveimg-resized (2)/34.png" alt="Design Work 34">
+      <div class="gallery-caption">Project Title 34</div>
+    </div>
+    <div class="gallery-item">
+      <img src="GRAPG/iloveimg-resized (2)/35.png" alt="Design Work 35">
+      <div class="gallery-caption">Project Title 35</div>
+    </div>
+    <div class="gallery-item">
+      <img src="GRAPG/iloveimg-resized (2)/36.png" alt="Design Work 36">
+      <div class="gallery-caption">Project Title 36</div>
+    </div>
+    <div class="gallery-item">
+      <img src="GRAPG/iloveimg-resized (2)/37.png" alt="Design Work 37">
+      <div class="gallery-caption">Project Title 37</div>
+    </div>
+    <div class="gallery-item">
+      <img src="GRAPG/iloveimg-resized (2)/38.png" alt="Design Work 38">
+      <div class="gallery-caption">Project Title 38</div>
+    </div>
+    <div class="gallery-item">
+      <img src="GRAPG/iloveimg-resized (2)/39.png" alt="Design Work 39">
+      <div class="gallery-caption">Project Title 39</div>
+    </div>
+    <div class="gallery-item">
+      <img src="GRAPG/iloveimg-resized (2)/40.png" alt="Design Work 40">
+      <div class="gallery-caption">Project Title 40</div>
+    </div>
+    <div class="gallery-item">
+      <img src="GRAPG/iloveimg-resized (2)/41.png" alt="Design Work 41">
+      <div class="gallery-caption">Project Title 41</div>
+    </div>
+    <div class="gallery-item">
+      <img src="GRAPG/iloveimg-resized (2)/42.png" alt="Design Work 42">
+      <div class="gallery-caption">Project Title 42</div>
+    </div>
+    <div class="gallery-item">
+      <img src="GRAPG/iloveimg-resized (2)/43.png" alt="Design Work 43">
+      <div class="gallery-caption">Project Title 43</div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-social">
+    <a href="#"><i class="fab fa-instagram"></i></a>
+    <a href="#"><i class="fab fa-behance"></i></a>
+    <a href="#"><i class="fab fa-dribbble"></i></a>
+  </div>
+  <p class="copyright">&copy; 2025 Design With Bunny. All rights reserved.</p>
+</footer>
+</body>
+</html> i want navibar color in black background

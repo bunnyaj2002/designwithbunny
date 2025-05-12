@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Design With Bunny - Video Portfolio</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Poppins:wght@300;400;500;600&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+  <style>
+    :root {
+      --primary-color: #ff6f91;
+      --secondary-color: #00f9ff;
+      --dark-bg: #0e0e1a;
+      --light-text: #f8f8f8;
+      --accent-color: #845ec2;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--dark-bg);
+      color: var(--light-text);
+    }
+
+    h1, h2 {
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .brand-header {
+      font-family: 'Dancing Script', cursive;
+      color: var(--primary-color);
+      font-size: 3rem;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 2rem;
+      background-color: rgba(14, 14, 26, 0.9);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      border-bottom: 1px solid rgba(255, 111, 145, 0.2);
+    }
+
+    .logo-title {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .logo-title h2 {
+      font-family: 'Dancing Script', cursive;
+      color: var(--primary-color);
+      font-size: 1.8rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .nav-links button {
+      background: none;
+      border: none;
+      color: var(--light-text);
+      font-family: 'Poppins', sans-serif;
+      font-size: 1rem;
+      cursor: pointer;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .nav-links button:hover {
+      color: var(--primary-color);
+      transform: translateY(-2px);
+    }
+
+    .nav-links .active {
+      color: var(--primary-color);
+      border-bottom: 2px solid var(--primary-color);
+    }
+
+    .logo-img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--primary-color);
+      box-shadow: 0 0 15px rgba(255, 111, 145, 0.4);
+      transition: all 0.3s ease;
+    }
+    
+    .logo-img:hover {
+      transform: rotate(15deg);
+      box-shadow: 0 0 20px rgba(255, 111, 145, 0.6);
+    }
+
+    .video-wrapper {
+      position: relative;
+      padding-bottom: 177.78%; /* 9:16 */
+      height: 0;
+      overflow: hidden;
+      border-radius: 1rem;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+      transition: transform 0.3s ease;
+    }
+
+    .video-wrapper:hover {
+      transform: scale(1.03);
+    }
+
+    .video-wrapper.wide {
+      padding-bottom: 56.25%; /* 16:9 */
+    }
+
+    .video-wrapper iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      border: 0;
+      border-radius: 1rem;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      font-weight: 600;
+      border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+      padding-bottom: 0.5rem;
+      margin-bottom: 2rem;
+    }
+
+    footer {
+      background: var(--dark-bg);
+      padding: 3rem 2rem;
+      text-align: center;
+      margin-top: 3rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .footer-social {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-social a {
+      font-size: 1.3rem;
+      color: rgba(255, 255, 255, 0.7);
+      transition: all 0.3s ease;
+      width: 45px;
+      height: 45px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .footer-social a:hover {
+      color: var(--primary-color);
+      background: rgba(255, 111, 145, 0.1);
+      transform: translateY(-3px);
+    }
+
+    .copyright {
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+      .brand-header {
+        font-size: 2.2rem;
+      }
+
+      .section-title {
+        font-size: 1.5rem;
+      }
+
+      .navbar {
+        flex-direction: column;
+        padding: 1rem;
+      }
+
+      .nav-links {
+        margin-top: 1rem;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      
+      .logo-title h2 {
+        font-size: 1.8rem;
+      }
+      
+      .logo-img {
+        width: 50px;
+        height: 50px;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .logo-img {
+        width: 40px;
+        height: 40px;
+      }
+    }
+  </style>
+
+</head>
+<body>
+  <!-- Navbar Start -->
+  <div class="navbar">
+    <!-- Logo and Title Wrapper -->
+    <div class="logo-title">
+      <img src="bunny logo new.jpg" alt="Bunny Logo" class="logo-img">
+      <h2>Design With Bunny</h2>
+    </div>
+
+    <!-- Navigation Links -->
+    <div class="nav-links">
+      <button onclick="window.location.href='index.html'">Home</button>
+      <button onclick="window.location.href='graphic-design.html'">Graphic Design</button>
+      <button onclick="window.location.href='video-design.html'" class="active">Video Editing</button>
+      <button onclick="window.location.href='contact.html'">Contact</button>
+    </div>
+  </div>
+  <!-- Navbar End -->
+
+  <div class="max-w-7xl mx-auto px-4 py-10">
+    <!-- Header -->
+    <header class="mb-12 text-center">
+      <h1 class="brand-header mb-2">Video Editing Portfolio</h1>
+    </header>
+
+    <!-- Reels Section -->
+    <section class="mb-16">
+      <h2 class="section-title text-pink-400">🎞 Reels (9:16)</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Each Reels Embed -->
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/mPTEopQE8cY" allowfullscreen></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/5NT6UivfxT4" allowfullscreen></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/XXyTU039BZs" allowfullscreen></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/mKGG0XKW81w" allowfullscreen></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/btZ00jzh8Hk" allowfullscreen></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/57Y6X28UwSY" allowfullscreen></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/zgzGnnUIc2w" allowfullscreen></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/CmJDDnECrcU" allowfullscreen></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/wERgcX2LR6o" allowfullscreen></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/muCefugE6RE" allowfullscreen></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/Mq8Z95oobIQ" allowfullscreen></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/-5dXDlmO1h0" allowfullscreen></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/YgNW3i6HVQ0" allowfullscreen></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/Y6K4GkzN9lM" allowfullscreen></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/5GZbX-T8Kyc" allowfullscreen></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/kLL0UooX5Pg" allowfullscreen></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/EZTWEX-pDXY" allowfullscreen></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/K0MqlYhd7WQ" allowfullscreen></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/iuEul7ZLhe0" allowfullscreen></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/ohTbmPiI9nY" allowfullscreen></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/iDuyWZ-LqiU" allowfullscreen></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/SmdYaUWek90" allowfullscreen></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/xblg7iCbJbA" allowfullscreen></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/TUqvEkY-crY" allowfullscreen></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/TZolbZABcHs" allowfullscreen></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/UB1MLkUN26k" allowfullscreen></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/R3wMOReSuWA" allowfullscreen></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/vO_8gaIGkiI" allowfullscreen></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/0v7vVxk6Ac8" allowfullscreen></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/zs-Tm4Iyl9g" allowfullscreen></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/XAEr0FMEHqw" allowfullscreen></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/eroOGV_7z6M" allowfullscreen></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/u-qcXQpy1kA" allowfullscreen></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/fUOWUrm2SfE" allowfullscreen></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/MOz3wMkHIXI" allowfullscreen></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/1QFqUwX_wV8" allowfullscreen></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/3hGjxQ3KcN0" allowfullscreen></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/ErSTWaQ3eWw" allowfullscreen></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/zOdR0W9llXk" allowfullscreen></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/HFf5mRtTpBk" allowfullscreen></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/IWvseyrV0B4" allowfullscreen></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/cE_Vs4SzZx4" allowfullscreen></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/ZzT2ZeObP3Q" allowfullscreen></iframe></div>
+      </div>
+    </section>
+
+    <!-- Long Videos Section -->
+    <section>
+      <h2 class="section-title text-indigo-400">📺 Long Videos (16:9)</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Each Long Video Embed -->
+        <div class="video-wrapper wide"><iframe src="https://www.youtube.com/embed/irBkHvymjU4" allowfullscreen></iframe></div>
+        <div class="video-wrapper wide"><iframe src="https://www.youtube.com/embed/9LMSJ13U07Q" allowfullscreen></iframe></div>
+        <div class="video-wrapper wide"><iframe src="https://www.youtube.com/embed/s05gy0cG7x0" allowfullscreen></iframe></div>
+        <div class="video-wrapper wide"><iframe src="https://www.youtube.com/embed/y7cosGjPAMA" allowfullscreen></iframe></div>
+        <div class="video-wrapper wide"><iframe src="https://www.youtube.com/embed/_hv_1wRc4yk" allowfullscreen></iframe></div>
+        <div class="video-wrapper wide"><iframe src="https://www.youtube.com/embed/YYEB74-WGz4" allowfullscreen></iframe></div>
+        <div class="video-wrapper wide"><iframe src="https://www.youtube.com/embed/TkpNlH-Kj6U" allowfullscreen></iframe></div>
+        <div class="video-wrapper wide"><iframe src="https://www.youtube.com/embed/t5TNy6ZYJgk" allowfullscreen></iframe></div>
+        <div class="video-wrapper wide"><iframe src="https://www.youtube.com/embed/0QPRJYFtY0o" allowfullscreen></iframe></div>
+        <div class="video-wrapper wide"><iframe src="https://www.youtube.com/embed/36hIbj9Z1KU" allowfullscreen></iframe></div>
+        <div class="video-wrapper wide"><iframe src="https://www.youtube.com/embed/zOVMR20dZBA" allowfullscreen></iframe></div>
+        <div class="video-wrapper wide"><iframe src="https://www.youtube.com/embed/NEDnBM4msT4" allowfullscreen></iframe></div>
+        <div class="video-wrapper wide"><iframe src="https://www.youtube.com/embed/IsUbLzChnQw" allowfullscreen></iframe></div>
+        <div class="video-wrapper wide"><iframe src="https://www.youtube.com/embed/mQF2-ryj2xg" allowfullscreen></iframe></div>
+        <div class="video-wrapper wide"><iframe src="https://www.youtube.com/embed/nUhhT7BMosg" allowfullscreen></iframe></div>
+        <div class="video-wrapper wide"><iframe src="https://www.youtube.com/embed/k4wnGOLm93E" allowfullscreen></iframe></div>
+        <div class="video-wrapper wide"><iframe src="https://www.youtube.com/embed/ZigkaWzRi14" allowfullscreen></iframe></div>
+        <div class="video-wrapper wide"><iframe src="https://www.youtube.com/embed/gQdpn8shoVI" allowfullscreen></iframe></div>
+        <div class="video-wrapper wide"><iframe src="https://www.youtube.com/embed/ZveVW6ATqbk" allowfullscreen></iframe></div>
+        <div class="video-wrapper wide"><iframe src="https://www.youtube.com/embed/kP9wVxXbylc" allowfullscreen></iframe></div>
+        <div class="video-wrapper wide"><iframe src="https://www.youtube.com/embed/BSofNeEIJyo" allowfullscreen></iframe></div>
+        <div class="video-wrapper wide"><iframe src="https://www.youtube.com/embed/p2HSMVgxIy0" allowfullscreen></iframe></div>
+        <div class="video-wrapper wide"><iframe src="https://www.youtube.com/embed/ytrsomynt0E" allowfullscreen></iframe></div>
+        <div class="video-wrapper wide"><iframe src="https://www.youtube.com/embed/XQi_8Pah0gM" allowfullscreen></iframe></div>
+        <div class="video-wrapper wide"><iframe src="https://www.youtube.com/embed/Wr41HDZD49Y" allowfullscreen></iframe></div>
+        <div class="video-wrapper wide"><iframe src="https://www.youtube.com/embed/ZB0gzq64qrs" allowfullscreen></iframe></div>
+        <div class="video-wrapper wide"><iframe src="https://www.youtube.com/embed/yCH2bTPGJrc" allowfullscreen></iframe></div>
+        <div class="video-wrapper wide"><iframe src="https://www.youtube.com/embed/PrQgGEFCQik" allowfullscreen></iframe></div>
+        <div class="video-wrapper wide"><iframe src="https://www.youtube.com/embed/xgMg_2zd9mo" allowfullscreen></iframe></div>
+        <div class="video-wrapper wide"><iframe src="https://www.youtube.com/embed/gYxUAgYEq4g" allowfullscreen></iframe></div>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <div class="footer-social">
+      <a href="https://wa.me/917989241791" target="_blank"><i class="fab fa-whatsapp"></i></a>
+      <a href="https://t.me/jasyaediting" target="_blank"><i class="fab fa-telegram"></i></a>
+      <a href="https://www.instagram.com/designwith_bunny" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.linkedin.com/in/jashwanth-parikirala-9a68b4269" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+    </div>
+    <p class="copyright">© 2025 Design With Bunny. All rights reserved.</p>
+  </footer>
+</body>
+</html>
