@@ -91,6 +91,17 @@
       font-size: 1.3rem;
       color: rgba(255, 255, 255, 0.7);
     }
+    .theme-toggle {
+      background: none;
+      border: none;
+      color: var(--light-text);
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    body.light-mode .theme-toggle {
+      color: var(--dark-text);
+    }
 
     footer {
       background: var(--dark-bg);
@@ -214,6 +225,8 @@
       <button onclick="window.location.href='graphic-design.html'">Graphic Design</button>
       <button onclick="window.location.href='video-design.html'">Video Editing</button>
       <button onclick="window.location.href='contact.html'" class="active">Contact</button>
+      <button class="theme-toggle" onclick="toggleTheme()"><i class="fas fa-moon"></i></button>
+
     </div>
   </div>
 
@@ -231,6 +244,12 @@
     </div>
     <p class="copyright">© 2025 Design With Bunny. All rights reserved.</p>
   </footer>
+function toggleTheme() {
+      document.body.classList.toggle('light-mode');
+      const themeIcon = document.querySelector('.theme-toggle i');
+      themeIcon.classList.toggle('fa-moon');
+      themeIcon.classList.toggle('fa-sun');
+    }
 
 </body>
 </html>
