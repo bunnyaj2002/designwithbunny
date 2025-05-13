@@ -13,19 +13,39 @@
       --dark: #0e0e1a;
       --light: #ffffff;
       --overlay: rgba(0, 0, 0, 0.85);
-      --primary-color: #ff6f91; /* Added for consistency */
+      --primary-color: #ff6f91;
+      --bg-color: var(--dark);
+      --text-color: var(--light);
+      --form-bg: rgba(14, 14, 26, 0.6);
+      --form-border: rgba(255, 255, 255, 0.1);
+      --input-bg: rgba(255, 255, 255, 0.1);
+      --input-border: rgba(255, 255, 255, 0.2);
+      --nav-bg: rgba(0, 0, 0, 0.7);
+    }
+
+    .light-theme {
+      --bg-color: #f5f5f7;
+      --text-color: #333;
+      --form-bg: rgba(255, 255, 255, 0.8);
+      --form-border: rgba(0, 0, 0, 0.1);
+      --input-bg: rgba(0, 0, 0, 0.05);
+      --input-border: rgba(0, 0, 0, 0.1);
+      --nav-bg: rgba(255, 255, 255, 0.9);
+      --overlay: rgba(255, 255, 255, 0.9);
     }
     
     body {
       margin: 0;
       font-family: 'Poppins', sans-serif;
-      color: var(--light);
+      color: var(--text-color);
       display: flex;
       flex-direction: column;
       min-height: 100vh;
       background: url('https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1964&q=80') no-repeat center center fixed;
       background-size: cover;
       position: relative;
+      background-color: var(--bg-color);
+      transition: background-color 0.3s ease, color 0.3s ease;
     }
     
     body::before {
@@ -37,10 +57,15 @@
       height: 100%;
       background: linear-gradient(135deg, var(--overlay) 0%, rgba(14, 14, 26, 0.95) 100%);
       z-index: 0;
+      transition: background 0.3s ease;
+    }
+
+    .light-theme body::before {
+      background: linear-gradient(135deg, var(--overlay) 0%, rgba(245, 245, 247, 0.95) 100%);
     }
 
     .navbar {
-      background-color: rgba(0, 0, 0, 0.7);
+      background-color: var(--nav-bg);
       padding: 1.5rem 3rem;
       display: flex;
       justify-content: space-between;
@@ -50,6 +75,7 @@
       backdrop-filter: blur(8px);
       box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
       border-bottom: 1px solid rgba(255, 111, 145, 0.2);
+      transition: background-color 0.3s ease;
     }
 
     .navbar h2 {
@@ -64,12 +90,13 @@
     .nav-links {
       display: flex;
       gap: 2rem;
+      align-items: center;
     }
 
     .nav-links button {
       background: none;
       border: none;
-      color: var(--light);
+      color: var(--text-color);
       font-weight: 600;
       cursor: pointer;
       transition: all 0.3s ease;
@@ -84,6 +111,25 @@
       transform: translateY(-2px);
     }
 
+    .theme-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      color: var(--text-color);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .theme-toggle:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: scale(1.1);
+    }
+
     .contact-container {
       flex: 1;
       display: flex;
@@ -96,14 +142,15 @@
       z-index: 1;
       max-width: 800px;
       margin: 0 auto;
-      background: rgba(14, 14, 26, 0.6);
+      background: var(--form-bg);
       backdrop-filter: blur(12px);
       border-radius: 20px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      border: 1px solid var(--form-border);
       box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
       margin-top: 3rem;
       margin-bottom: 3rem;
       animation: fadeIn 1s ease-out;
+      transition: background 0.3s ease, border-color 0.3s ease;
     }
 
     @keyframes fadeIn {
@@ -132,7 +179,7 @@
     }
 
     .contact-container a:hover {
-      color: var(--light);
+      color: var(--primary);
     }
 
     .social-icons {
@@ -144,7 +191,7 @@
     }
 
     .social-icons a {
-      color: var(--light);
+      color: var(--text-color);
       font-size: 2.5rem;
       transition: all 0.3s ease;
       display: inline-block;
@@ -158,12 +205,82 @@
     footer {
       text-align: center;
       padding: 2rem 1rem;
-      background: rgba(14, 14, 26, 0.8);
-      color: #aaa;
+      background: var(--nav-bg);
+      color: var(--text-color);
       position: relative;
       z-index: 1;
       backdrop-filter: blur(8px);
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      border-top: 1px solid var(--form-border);
+      transition: background-color 0.3s ease, border-color 0.3s ease;
+    }
+
+    /* Contact Form Styles */
+    .contact-form {
+      width: 100%;
+      max-width: 600px;
+      margin: 2rem auto 0;
+      text-align: left;
+    }
+
+    .contact-form label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+      color: var(--text-color);
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 0.75rem;
+      margin-bottom: 1.5rem;
+      border: 1px solid var(--input-border);
+      border-radius: 8px;
+      background-color: var(--input-bg);
+      color: var(--text-color);
+      font-family: 'Poppins', sans-serif;
+      transition: all 0.3s ease;
+    }
+
+    .contact-form textarea {
+      margin-bottom: 1rem;
+    }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 2px rgba(255, 111, 145, 0.3);
+      background-color: var(--input-bg);
+    }
+
+    .contact-form button[type="submit"] {
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: inline-block;
+      margin-top: 0.5rem;
+    }
+
+    .contact-form button[type="submit"]:hover {
+      background-color: #ff5778;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(255, 111, 145, 0.3);
+    }
+
+    .grid {
+      display: grid;
+      gap: 1.5rem; /* Increased gap for better spacing */
+    }
+
+    .md\:grid-cols-2 {
+      grid-template-columns: repeat(2, 1fr);
     }
 
     @media (max-width: 768px) {
@@ -197,6 +314,10 @@
       .social-icons a {
         font-size: 2rem;
       }
+
+      .md\:grid-cols-2 {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
@@ -209,8 +330,9 @@
       <button onclick="openLink('graphic-design.html')">Graphic Design</button>
       <button onclick="openLink('video-design.html')">Video Editing</button>
       <button onclick="openLink('contact.html')">Contact</button>
-            <button class="theme-toggle" onclick="toggleTheme()"><i class="fas fa-moon"></i></button>
-
+      <button class="theme-toggle" onclick="toggleTheme()">
+        <i class="fas fa-moon" id="theme-icon"></i>
+      </button>
     </div>
   </div>
 
@@ -220,6 +342,31 @@
     <p><strong>Email:</strong> <a href="mailto:designwithbunny01@gmail.com">designwithbunny01@gmail.com</a></p>
     <p><strong>Available:</strong> 9 AM to 12 PM (Monday to Saturday)</p>
     <p>Feel free to reach out for collaborations or creative projects!</p>
+
+    <div class="contact-form">
+      <form action="https://formsubmit.co/designwithbunny01@gmail.com" method="POST" class="space-y-4">
+        <input type="hidden" name="_captcha" value="false">
+        <div class="grid md:grid-cols-2 gap-4">
+          <div>
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name" required>
+          </div>
+          <div>
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" required>
+          </div>
+        </div>
+        <div>
+          <label for="subject">Subject</label>
+          <input type="text" name="subject" id="subject">
+        </div>
+        <div>
+          <label for="message">Message</label>
+          <textarea name="message" id="message" rows="4" required></textarea>
+        </div>
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
 
     <div class="social-icons">
       <a href="https://www.instagram.com/designwith_bunny?igsh=MXFta2sydmM2M20yeg%3D%3D&utm_source=qr" target="_blank" title="Instagram">
@@ -245,6 +392,34 @@
     function openLink(url) {
       window.open(url, '_self');
     }
+    
+    function toggleTheme() {
+      document.body.classList.toggle('light-theme');
+      
+      // Change icon based on theme
+      const themeIcon = document.getElementById('theme-icon');
+      if (document.body.classList.contains('light-theme')) {
+        themeIcon.classList.remove('fa-moon');
+        themeIcon.classList.add('fa-sun');
+      } else {
+        themeIcon.classList.remove('fa-sun');
+        themeIcon.classList.add('fa-moon');
+      }
+      
+      // Save preference to localStorage
+      const isLight = document.body.classList.contains('light-theme');
+      localStorage.setItem('lightTheme', isLight);
+    }
+    
+    // Check for saved theme preference
+    document.addEventListener('DOMContentLoaded', () => {
+      if (localStorage.getItem('lightTheme') === 'true') {
+        document.body.classList.add('light-theme');
+        const themeIcon = document.getElementById('theme-icon');
+        themeIcon.classList.remove('fa-moon');
+        themeIcon.classList.add('fa-sun');
+      }
+    });
   </script>
 
 </body>
