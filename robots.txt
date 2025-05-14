@@ -1,3 +1,4 @@
 User-agent: *
 Allow: /
-Sitemap: https://bunnyaj2002.github.io/designwithbunny/sitemap.xml
+
+Sitemap: https://designwithbunny.vercel.app/sitemap.xml
