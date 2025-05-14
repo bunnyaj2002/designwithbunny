@@ -9,22 +9,29 @@
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Poppins:wght@300;400;500;600&family=Montserrat:wght@400;600&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --primary-color: #ff6f91;
-      --secondary-color: #00f9ff;
-      --dark-bg: #0e0e1a;
-      --light-text: #f8f8f8;
-      --accent-color: #845ec2;
+      --primary-color: #ff4b91;
+      --secondary-color: #4bffa5;
+      --dark-bg: #1a1a2e;
+      --light-text: #ffffff;
+      --accent-color: #6b48ff;
+      --card-bg: #ffffff;
     }
     
     body {
       font-family: 'Poppins', sans-serif;
-      background-color: #f8f9fa;
-      color: #333;
+      background-color: #f5f7fa;
+      color: #2d2d2d;
       scroll-behavior: smooth;
+      transition: all 0.3s ease;
+    }
+    
+    body.dark-mode {
+      background-color: var(--dark-bg);
+      color: var(--light-text);
     }
     
     .hero-gradient {
-      background: linear-gradient(135deg, rgba(14,14,26,0.9) 0%, rgba(132,94,194,0.8) 100%);
+      background: linear-gradient(135deg, rgba(26,26,46,0.95) 0%, rgba(107,72,255,0.85) 100%);
     }
     
     .dancing-script {
@@ -36,28 +43,36 @@
     }
     
     .border-glow:hover {
-      box-shadow: 0 0 15px rgba(255, 111, 145, 0.6);
+      box-shadow: 0 0 20px rgba(255, 75, 145, 0.7);
     }
     
     .hover-scale {
-      transition: transform 0.3s ease;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
     }
     
     .hover-scale:hover {
-      transform: scale(1.05);
+      transform: scale(1.03);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
     }
     
     .service-card {
-      transition: all 0.3s ease;
+      transition: all 0.4s ease;
+      background: var(--card-bg);
+      border: 1px solid rgba(0,0,0,0.05);
+    }
+    
+    body.dark-mode .service-card {
+      background: #2a2a3e;
     }
     
     .service-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+      transform: translateY(-12px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
     }
     
     .nav-link {
       position: relative;
+      padding-bottom: 4px;
     }
     
     .nav-link::after {
@@ -65,31 +80,35 @@
       position: absolute;
       width: 0;
       height: 2px;
-      bottom: -2px;
+      bottom: 0;
       left: 0;
       background-color: var(--primary-color);
-      transition: width 0.3s ease;
+      transition: width 0.4s ease;
     }
     
     .nav-link:hover::after {
       width: 100%;
     }
+    
     .theme-toggle {
       background: none;
       border: none;
       color: var(--light-text);
       font-size: 1.5rem;
       cursor: pointer;
+      transition: color 0.3s ease;
     }
-
+    
     body.light-mode .theme-toggle {
-      color: var(--dark-text);
+      color: #2d2d2d;
     }
+    
     .portfolio-item {
       position: relative;
       overflow: hidden;
-      border-radius: 12px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+      transition: all 0.4s ease;
     }
     
     .portfolio-overlay {
@@ -98,12 +117,13 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0,0,0,0.7);
+      background: rgba(26,26,46,0.85);
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
       opacity: 0;
-      transition: opacity 0.3s ease;
+      transition: opacity 0.4s ease;
     }
     
     .portfolio-item:hover .portfolio-overlay {
@@ -113,61 +133,72 @@
     .section-title {
       position: relative;
       display: inline-block;
-      margin-bottom: 30px;
+      margin-bottom: 40px;
     }
     
     .section-title:after {
       content: '';
       position: absolute;
-      width: 50px;
-      height: 3px;
+      width: 60px;
+      height: 4px;
       background: var(--primary-color);
-      bottom: -10px;
+      bottom: -12px;
       left: 50%;
       transform: translateX(-50%);
     }
     
-    /* Mobile menu styles */
     .mobile-menu {
       max-height: 0;
       overflow: hidden;
-      transition: max-height 0.3s ease-out;
+      transition: max-height 0.4s ease-out;
     }
     
     .mobile-menu.active {
-      max-height: 500px;
+      max-height: 600px;
     }
-
-    /* Enhanced logo styles */
+    
     .logo-img {
-      width: 60px;
-      height: 60px;
+      width: 64px;
+      height: 64px;
       border-radius: 50%;
       object-fit: cover;
-      border: 2px solid var(--primary-color);
-      box-shadow: 0 0 15px rgba(255, 111, 145, 0.4);
-      transition: all 0.3s ease;
+      border: 3px solid var(--primary-color);
+      box-shadow: 0 0 20px rgba(255, 75, 145, 0.5);
+      transition: all 0.4s ease;
     }
     
     .logo-img:hover {
-      transform: rotate(12deg);
-      box-shadow: 0 0 20px rgba(255, 111, 145, 0.6);
+      transform: rotate(15deg) scale(1.1);
+      box-shadow: 0 0 25px rgba(255, 75, 145, 0.7);
+    }
+    
+    .btn-primary {
+      background: var(--primary-color);
+      color: #fff;
+      padding: 12px 28px;
+      border-radius: 50px;
+      transition: all 0.3s ease;
+    }
+    
+    .btn-primary:hover {
+      background: #e63a80;
+      transform: translateY(-2px);
     }
     
     @media (max-width: 768px) {
       .brand-header {
-        font-size: 2.2rem;
+        font-size: 2rem;
       }
-
+      
       .section-title {
-        font-size: 1.5rem;
+        font-size: 1.8rem;
       }
-
+      
       .navbar {
         flex-direction: column;
         padding: 1rem;
       }
-
+      
       .nav-links {
         margin-top: 1rem;
         flex-wrap: wrap;
@@ -175,105 +206,106 @@
       }
       
       .logo-img {
-        width: 50px;
-        height: 50px;
+        width: 52px;
+        height: 52px;
+      }
+      
+      .portfolio-item img {
+        height: 200px !important;
       }
     }
     
     @media (max-width: 480px) {
       .logo-img {
-        width: 40px;
-        height: 40px;
+        width: 44px;
+        height: 44px;
+      }
+      
+      .section-title {
+        font-size: 1.5rem;
       }
     }
   </style>
 </head>
 <body>
   <!-- Navigation -->
-  <header class="bg-white shadow-md sticky top-0 z-50">
+  <header class="bg-white dark:bg-gray-900 shadow-lg sticky top-0 z-50 transition-all duration-300">
     <div class="container mx-auto px-6 py-4 flex justify-between items-center">
       <div class="flex items-center">
         <img src="bunny logo new.jpg" alt="Bunny Logo" class="logo-img">
-        <h2 class="dancing-script text-3xl font-bold text-pink-600 ml-4">Design With Bunny</h2>
+        <h2 class="dancing-script text-3xl font-bold text-pink-500 ml-4">Design With Bunny</h2>
       </div>
-      <nav class="hidden md:flex space-x-8">
-        <a href="#home" class="nav-link text-gray-800 hover:text-pink-600 font-medium">Home</a>
-        <a href="#about" class="nav-link text-gray-800 hover:text-pink-600 font-medium">About</a>
-        <a href="#services" class="nav-link text-gray-800 hover:text-pink-600 font-medium">Services</a>
-        <a href="#portfolio" class="nav-link text-gray-800 hover:text-pink-600 font-medium">Portfolio</a>
-        <a href="#contact" class="nav-link text-gray-800 hover:text-pink-600 font-medium">Contact</a>
-      <button class="theme-toggle" onclick="toggleTheme()"><i class="fas fa-moon"></i></button>
-
+      <nav class="hidden md:flex space-x-8 items-center">
+        <a href="#home" class="nav-link text-gray-800 dark:text-gray-200 hover:text-pink-500 font-medium">Home</a>
+        <a href="#about" class="nav-link text-gray-800 dark:text-gray-200 hover:text-pink-500 font-medium">About</a>
+        <a href="#services" class="nav-link text-gray-800 dark:text-gray-200 hover:text-pink-500 font-medium">Services</a>
+        <a href="#portfolio" class="nav-link text-gray-800 dark:text-gray-200 hover:text-pink-500 font-medium">Portfolio</a>
+        <a href="#contact" class="nav-link text-gray-800 dark:text-gray-200 hover:text-pink-500 font-medium">Contact</a>
+        <button class="theme-toggle" onclick="toggleTheme()"><i class="fas fa-moon"></i></button>
       </nav>
-      <button id="mobile-menu-button" class="md:hidden text-gray-800 focus:outline-none">
+      <button id="mobile-menu-button" class="md:hidden text-gray-800 dark:text-gray-200 focus:outline-none">
         <i class="fas fa-bars text-2xl"></i>
       </button>
     </div>
     
     <!-- Mobile Menu -->
-    <div id="mobile-menu" class="mobile-menu md:hidden bg-white w-full">
+    <div id="mobile-menu" class="mobile-menu md:hidden bg-white dark:bg-gray-900 w-full">
       <div class="container mx-auto px-6 py-4 flex flex-col space-y-4">
-        <a href="#home" class="nav-link text-gray-800 hover:text-pink-600 font-medium">Home</a>
-        <a href="#about" class="nav-link text-gray-800 hover:text-pink-600 font-medium">About</a>
-        <a href="#services" class="nav-link text-gray-800 hover:text-pink-600 font-medium">Services</a>
-        <a href="#portfolio" class="nav-link text-gray-800 hover:text-pink-600 font-medium">Portfolio</a>
-        <a href="#contact" class="nav-link text-gray-800 hover:text-pink-600 font-medium">Contact</a>
+        <a href="#home" class="nav-link text-gray-800 dark:text-gray-200 hover:text-pink-500 font-medium">Home</a>
+        <a href="#about" class="nav-link text-gray-800 dark:text-gray-200 hover:text-pink-500 font-medium">About</a>
+        <a href="#services" class="nav-link text-gray-800 dark:text-gray-200 hover:text-pink-500 font-medium">Services</a>
+        <a href="#portfolio" class="nav-link text-gray-800 dark:text-gray-200 hover:text-pink-500 font-medium">Portfolio</a>
+        <a href="#contact" class="nav-link text-gray-800 dark:text-gray-200 hover:text-pink-500 font-medium">Contact</a>
       </div>
     </div>
   </header>
 
   <!-- Hero Section -->
-  <section id="home" class="hero-gradient text-white py-20 md:py-32">
+  <section id="home" class="hero-gradient text-white py-24 md:py-36">
     <div class="container mx-auto px-6 flex flex-col md:flex-row items-center">
       <div class="md:w-1/2 mb-12 md:mb-0">
         <h1 class="playfair-display text-4xl md:text-6xl font-bold mb-6">Hi, I'm <span class="text-pink-400">Bunny</span></h1>
-        <p class="text-xl mb-8">Creative Graphic Designer & Video Editor</p>
+        <p class="text-xl mb-8 leading-relaxed">Creative Graphic Designer, Video Editor & Digital Marketer</p>
         <div class="flex space-x-4">
-          <a href="#contact" class="bg-pink-600 hover:bg-pink-700 text-white font-medium py-3 px-6 rounded-full transition">Get In Touch</a>
+          <a href="#contact" class="btn-primary font-medium">Get In Touch</a>
           <a href="#portfolio" class="border-2 border-white hover:bg-white hover:text-gray-900 text-white font-medium py-3 px-6 rounded-full transition">View Work</a>
         </div>
       </div>
       <div class="md:w-1/2 flex justify-center">
-        <img src="bunnypic1.jpeg" alt="Bunny Profile" class="rounded-full border-4 border-pink-500 w-64 h-64 md:w-80 md:h-80 object-cover shadow-xl hover-scale">
+        <img src="bunnypic1.jpeg" alt="Bunny Profile" class="rounded-full border-4 border-pink-400 w-64 h-64 md:w-80 md:h-80 object-cover shadow-2xl hover-scale">
       </div>
     </div>
   </section>
 
   <!-- About Section -->
-  <section id="about" class="py-20 bg-white">
+  <section id="about" class="py-24 bg-white dark:bg-gray-900">
     <div class="container mx-auto px-6">
-      <h2 class="text-center playfair-display text-3xl md:text-4xl font-bold mb-4 section-title">About Me</h2>
+      <h2 class="text-center playfair-display text-3xl md:text-4xl font-bold mb-4 section-title text-gray-900 dark:text-white">About Me</h2>
       <div class="flex flex-col md:flex-row items-center">
-        <div class="md:w-1/2 mb-8 md:mb-0 md:pr-10">
-          <p class="text-lg mb-6">
-            Hi! I'm Parikirala Jashwanth (Bunny), a passionate creative professional specializing in graphic design and video editing. With a keen eye for detail and a love for visual storytelling, I help brands and individuals stand out in the digital space.
+        <div class="md:w-1/2 mb-8 md:mb-0 md:pr-12">
+          <p class="text-lg mb-6 text-gray-700 dark:text-gray-300">
+            Hi! I'm Parikirala Jashwanth (Bunny), a passionate creative professional specializing in graphic design, video editing, and digital marketing. With a keen eye for detail and a love for visual storytelling, I help brands and individuals stand out in the digital space.
           </p>
-          <p class="text-lg mb-6">
+          <p class="text-lg mb-6 text-gray-700 dark:text-gray-300">
             My journey in design began with a fascination for transforming ideas into compelling visuals. Over time, I've developed expertise across various design tools and platforms to deliver high-quality creative solutions.
           </p>
-          <div class="flex space-x-4">
-            <a href="#" class="flex items-center text-pink-600 hover:text-pink-800">
-              <i class="fas fa-file-download text-xl mr-2"></i>
-              <span>Download CV</span>
-            </a>
-          </div>
         </div>
-        <div class="md:w-1/2 grid grid-cols-2 gap-4">
-          <div class="bg-gray-100 p-6 rounded-lg shadow hover-scale">
-            <h3 class="text-xl font-bold mb-2 text-pink-600">1.5+</h3>
-            <p>Years Experience</p>
+        <div class="md:w-1/2 grid grid-cols-2 gap-6">
+          <div class="bg-gray-100 dark:bg-gray-800 p-6 rounded-xl shadow hover-scale">
+            <h3 class="text-xl font-bold mb-2 text-pink-500">1.5+</h3>
+            <p class="text-gray-700 dark:text-gray-300">Years Experience</p>
           </div>
-          <div class="bg-gray-100 p-6 rounded-lg shadow hover-scale">
-            <h3 class="text-xl font-bold mb-2 text-pink-600">100+</h3>
-            <p>Projects Completed</p>
+          <div class="bg-gray-100 dark:bg-gray-800 p-6 rounded-xl shadow hover-scale">
+            <h3 class="text-xl font-bold mb-2 text-pink-500">100+</h3>
+            <p class="text-gray-700 dark:text-gray-300">Projects Completed</p>
           </div>
-          <div class="bg-gray-100 p-6 rounded-lg shadow hover-scale">
-            <h3 class="text-xl font-bold mb-2 text-pink-600">10+</h3>
-            <p>Happy Clients</p>
+          <div class="bg-gray-100 dark:bg-gray-800 p-6 rounded-xl shadow hover-scale">
+            <h3 class="text-xl font-bold mb-2 text-pink-500">10+</h3>
+            <p class="text-gray-700 dark:text-gray-300">Happy Clients</p>
           </div>
-          <div class="bg-gray-100 p-6 rounded-lg shadow hover-scale">
-            <h3 class="text-xl font-bold mb-2 text-pink-600"> 😊 </h3>
-            <p>Got Lot's Of Experience</p>
+          <div class="bg-gray-100 dark:bg-gray-800 p-6 rounded-xl shadow hover-scale">
+            <h3 class="text-xl font-bold mb-2 text-pink-500">😊</h3>
+            <p class="text-gray-700 dark:text-gray-300">Lots Of Experience</p>
           </div>
         </div>
       </div>
@@ -281,35 +313,35 @@
   </section>
 
   <!-- Services Section -->
-  <section id="services" class="py-20 bg-gray-100">
+  <section id="services" class="py-24 bg-gray-100 dark:bg-gray-800">
     <div class="container mx-auto px-6">
-      <h2 class="text-center playfair-display text-3xl md:text-4xl font-bold mb-4 section-title">My Services</h2>
+      <h2 class="text-center playfair-display text-3xl md:text-4xl font-bold mb-4 section-title text-gray-900 dark:text-white">My Services</h2>
       <div class="grid md:grid-cols-3 gap-8">
-        <div class="bg-white p-8 rounded-xl shadow-md service-card transition">
-          <div class="text-pink-600 mb-4">
+        <div class="service-card p-8 rounded-xl">
+          <div class="text-pink-500 mb-4">
             <i class="fas fa-palette text-4xl"></i>
           </div>
-          <h3 class="text-xl font-bold mb-4">Graphic Design</h3>
-          <p class="text-gray-700">
+          <h3 class="text-xl font-bold mb-4 text-gray-900 dark:text-white">Graphic Design</h3>
+          <p class="text-gray-700 dark:text-gray-300">
             Creating visually stunning designs including logos, branding materials, social media graphics, and marketing collateral that capture your brand's essence.
           </p>
         </div>
-        <div class="bg-white p-8 rounded-xl shadow-md service-card transition">
-          <div class="text-pink-600 mb-4">
+        <div class="service-card p-8 rounded-xl">
+          <div class="text-pink-500 mb-4">
             <i class="fas fa-video text-4xl"></i>
           </div>
-          <h3 class="text-xl font-bold mb-4">Video Editing</h3>
-          <p class="text-gray-700">
+          <h3 class="text-xl font-bold mb-4 text-gray-900 dark:text-white">Video Editing</h3>
+          <p class="text-gray-700 dark:text-gray-300">
             Professional video editing services including cutting, transitions, color grading, and effects to create engaging content for your audience.
           </p>
         </div>
-        <div class="bg-white p-8 rounded-xl shadow-md service-card transition">
-          <div class="text-pink-600 mb-4">
+        <div class="service-card p-8 rounded-xl">
+          <div class="text-pink-500 mb-4">
             <i class="fas fa-hashtag text-4xl"></i>
           </div>
-          <h3 class="text-xl font-bold mb-4">Digital Marketing</h3>
-          <p class="text-gray-700">
-            We specialize in business development, brand building, SEO optimization, website design, and a range of digital solutions to help your brand grow and thrive in today's competitive market.
+          <h3 class="text-xl font-bold mb-4 text-gray-900 dark:text-white">Digital Marketing</h3>
+          <p class="text-gray-700 dark:text-gray-300">
+            We specialize in business development, brand building, SEO optimization, website design, and a range of digital solutions to help your brand grow.
           </p>
         </div>
       </div>
@@ -317,28 +349,43 @@
   </section>
 
   <!-- Portfolio Section -->
-  <section id="portfolio" class="py-20 bg-white">
+  <section id="portfolio" class="py-24 bg-white dark:bg-gray-900">
     <div class="container mx-auto px-6">
-      <h2 class="text-center playfair-display text-3xl md:text-4xl font-bold mb-4 section-title">My Portfolio</h2>
-      <div class="grid md:grid-cols-2 gap-8">
-        <!-- Portfolio Item 1 -->
+      <h2 class="text-center playfair-display text-3xl md:text-4xl font-bold mb-4 section-title text-gray-900 dark:text-white">My Portfolio</h2>
+      <div class="grid md:grid-cols-3 gap-8">
+        <!-- Portfolio Item 1: Graphic Design -->
         <div class="portfolio-item hover-scale">
-          <img src="3644996.jpg" alt="Graphic Design Project" class="w-full h-80 object-cover">
+          <img src="5311309.jpg" alt="Graphic Design Project" class="w-full h-80 object-cover">
           <div class="portfolio-overlay">
-            <a href="graphic-design.html" class="text-white text-lg font-medium border-b-2 border-pink-500 pb-1">View Project</a>
+            <h3 class="text-white text-xl font-bold mb-2">Brand Identity</h3>
+            <a href="graphic-design.html" class="text-white text-lg font-medium border-b-2 border-pink-400 pb-1">View Project</a>
           </div>
           <div class="absolute top-4 left-4 bg-black bg-opacity-70 text-white px-3 py-1 rounded">
             Graphic Design
           </div>
         </div>
         
+        <!-- Portfolio Item 2: Video Editing -->
         <div class="portfolio-item hover-scale">
-          <img src="Male animator sitting at computer desk and creating project.jpg" alt="Video Editing Project" class="w-full h-80 object-cover">
+          <img src="5311299.jpg" alt="Video Editing Project" class="w-full h-80 object-cover">
           <div class="portfolio-overlay">
-            <a href="video-design.html" class="text-white text-lg font-medium border-b-2 border-pink-600 pb-1">View Project</a>
+            <h3 class="text-white text-xl font-bold mb-2">Promotional Video</h3>
+            <a href="video-design.html" class="text-white text-lg font-medium border-b-2 border-pink-400 pb-1">View Project</a>
           </div>
           <div class="absolute top-4 left-4 bg-black bg-opacity-70 text-white px-3 py-1 rounded">
             Video Editing
+          </div>
+        </div>
+        
+        <!-- Portfolio Item 3: Digital Marketing -->
+        <div class="portfolio-item hover-scale">
+          <img src="20945428.jpg" alt="Digital Marketing Project" class="w-full h-80 object-cover">
+          <div class="portfolio-overlay">
+            <h3 class="text-white text-xl font-bold mb-2">Social Media Campaign</h3>
+            <a href="digital-markting.html" class="text-white text-lg font-medium border-b-2 border-pink-400 pb-1">View Project</a>
+          </div>
+          <div class="absolute top-4 left-4 bg-black bg-opacity-70 text-white px-3 py-1 rounded">
+            Digital Marketing
           </div>
         </div>
       </div>
@@ -346,11 +393,11 @@
   </section>
 
   <!-- Testimonials Section -->
-  <section class="py-20 bg-gray-100">
+  <section class="py-24 bg-gray-100 dark:bg-gray-800">
     <div class="container mx-auto px-6">
-      <h2 class="text-center playfair-display text-3xl md:text-4xl font-bold mb-4 section-title">Client Testimonials</h2>
+      <h2 class="text-center playfair-display text-3xl md:text-4xl font-bold mb-4 section-title text-gray-900 dark:text-white">Client Testimonials</h2>
       <div class="grid md:grid-cols-2 gap-8">
-        <div class="bg-white p-8 rounded-xl shadow-md">
+        <div class="bg-white dark:bg-gray-700 p-8 rounded-xl shadow-md">
           <div class="flex items-center mb-4">
             <div class="text-yellow-400 mr-2">
               <i class="fas fa-star"></i>
@@ -360,7 +407,7 @@
               <i class="fas fa-star"></i>
             </div>
           </div>
-          <p class="text-gray-700 mb-6 italic">
+          <p class="text-gray-700 dark:text-gray-300 mb-6 italic">
             "Bunny's designs perfectly captured our brand identity. The attention to detail and creative approach exceeded our expectations. Highly recommended!"
           </p>
           <div class="flex items-center">
@@ -368,12 +415,12 @@
               SJ
             </div>
             <div>
-              <h4 class="font-bold">Sarah Johnson</h4>
-              <p class="text-gray-600">CEO, Glasswings</p>
+              <h4 class="font-bold text-gray-900 dark:text-white">Sarah Johnson</h4>
+              <p class="text-gray-600 dark:text-gray-400">CEO, Glasswings</p>
             </div>
           </div>
         </div>
-        <div class="bg-white p-8 rounded-xl shadow-md">
+        <div class="bg-white dark:bg-gray-700 p-8 rounded-xl shadow-md">
           <div class="flex items-center mb-4">
             <div class="text-yellow-400 mr-2">
               <i class="fas fa-star"></i>
@@ -383,7 +430,7 @@
               <i class="fas fa-star"></i>
             </div>
           </div>
-          <p class="text-gray-700 mb-6 italic">
+          <p class="text-gray-700 dark:text-gray-300 mb-6 italic">
             "The video editing work was exceptional. Bunny understood our vision and delivered content that significantly boosted our social media engagement."
           </p>
           <div class="flex items-center">
@@ -391,8 +438,8 @@
               MC
             </div>
             <div>
-              <h4 class="font-bold">Michael Chen</h4>
-              <p class="text-gray-600">Marketing Director, Miam Trust</p>
+              <h4 class="font-bold text-gray-900 dark:text-white">Michael Chen</h4>
+              <p class="text-gray-600 dark:text-gray-400">Marketing Director, Miam Trust</p>
             </div>
           </div>
         </div>
@@ -401,48 +448,48 @@
   </section>
 
   <!-- Contact Section -->
-  <section id="contact" class="py-20 bg-white">
+  <section id="contact" class="py-24 bg-white dark:bg-gray-900">
     <div class="container mx-auto px-6">
-      <h2 class="text-center playfair-display text-3xl md:text-4xl font-bold mb-4 section-title">Get In Touch</h2>
+      <h2 class="text-center playfair-display text-3xl md:text-4xl font-bold mb-4 section-title text-gray-900 dark:text-white">Get In Touch</h2>
       <div class="flex flex-col md:flex-row">
-        <div class="md:w-1/2 mb-8 md:mb-0 md:pr-10">
-          <h3 class="text-xl font-bold mb-6">Contact Information</h3>
+        <div class="md:w-1/2 mb-8 md:mb-0 md:pr-12">
+          <h3 class="text-xl font-bold mb-6 text-gray-900 dark:text-white">Contact Information</h3>
           <div class="space-y-4">
             <div class="flex items-start">
-              <i class="fas fa-map-marker-alt text-pink-600 mt-1 mr-4"></i>
+              <i class="fas fa-map-marker-alt text-pink-500 mt-1 mr-4"></i>
               <div>
-                <h4 class="font-bold">Location</h4>
-                <p class="text-gray-700">Hyderabad, India</p>
+                <h4 class="font-bold text-gray-900 dark:text-white">Location</h4>
+                <p class="text-gray-700 dark:text-gray-300">Hyderabad, India</p>
               </div>
             </div>
             <div class="flex items-start">
-              <i class="fas fa-envelope text-pink-600 mt-1 mr-4"></i>
+              <i class="fas fa-envelope text-pink-500 mt-1 mr-4"></i>
               <div>
-                <h4 class="font-bold">Email</h4>
-                <p class="text-gray-700">designwithbunny01@gmail.com</p>
+                <h4 class="font-bold text-gray-900 dark:text-white">Email</h4>
+                <p class="text-gray-700 dark:text-gray-300">designwithbunny01@gmail.com</p>
               </div>
             </div>
             <div class="flex items-start">
-              <i class="fas fa-phone-alt text-pink-600 mt-1 mr-4"></i>
+              <i class="fas fa-phone-alt text-pink-500 mt-1 mr-4"></i>
               <div>
-                <h4 class="font-bold">Phone</h4>
-                <p class="text-gray-700">+91 7989241791</p>
+                <h4 class="font-bold text-gray-900 dark:text-white">Phone</h4>
+                <p class="text-gray-700 dark:text-gray-300">+91 7989241791</p>
               </div>
             </div>
           </div>
           <div class="mt-8">
-            <h3 class="text-xl font-bold mb-4">Follow Me</h3>
+            <h3 class="text-xl font-bold mb-4 text-gray-900 dark:text-white">Follow Me</h3>
             <div class="flex space-x-4">
-              <a href="https://wa.me/917989241791" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-700 hover:bg-pink-600 hover:text-white transition">
-              <i class="fab fa-whatsapp"></i>
-               </a>
-              <a href="https://t.me/jasyaediting" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-700 hover:bg-pink-600 hover:text-white transition">
+              <a href="https://wa.me/917989241791" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-700 flex items-center justify-center text-gray-700 dark:text-gray-300 hover:bg-pink-500 hover:text-white transition">
+                <i class="fab fa-whatsapp"></i>
+              </a>
+              <a href="https://t.me/jasyaediting" class="w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-700 flex items-center justify-center text-gray-700 dark:text-gray-300 hover:bg-pink-500 hover:text-white transition">
                 <i class="fab fa-telegram"></i>
               </a>
-              <a href="https://www.instagram.com/designwith_bunny?igsh=MXFta2sydmM2M20yeg%3D%3D&utm_source=qr" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-700 hover:bg-pink-600 hover:text-white transition">
+              <a href="https://www.instagram.com/designwith_bunny?igsh=MXFta2sydmM2M20yeg%3D%3D&utm_source=qr" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-700 flex items-center justify-center text-gray-700 dark:text-gray-300 hover:bg-pink-500 hover:text-white transition">
                 <i class="fab fa-instagram"></i>
               </a>
-              <a href="https://www.linkedin.com/in/jashwanth-parikirala-9a68b4269?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-700 hover:bg-pink-600 hover:text-white transition">
+              <a href="https://www.linkedin.com/in/jashwanth-parikirala-9a68b4269?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" class="w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-700 flex items-center justify-center text-gray-700 dark:text-gray-300 hover:bg-pink-500 hover:text-white transition">
                 <i class="fab fa-linkedin-in"></i>
               </a>
             </div>
@@ -450,94 +497,80 @@
         </div>
         <div class="md:w-1/2">
           <form action="https://formsubmit.co/designwithbunny01@gmail.com" method="POST" class="space-y-4">
-  <input type="hidden" name="_captcha" value="false">
-  <div class="grid md:grid-cols-2 gap-4">
-    <div>
-      <label for="name" class="block mb-1 font-medium">Name</label>
-      <input type="text" name="name" id="name" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-600 focus:border-transparent">
-    </div>
-    <div>
-      <label for="email" class="block mb-1 font-medium">Email</label>
-      <input type="email" name="email" id="email" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-600 focus:border-transparent">
-    </div>
-  </div>
-  <div>
-    <label for="subject" class="block mb-1 font-medium">Subject</label>
-    <input type="text" name="subject" id="subject" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-600 focus:border-transparent">
-  </div>
-  <div>
-    <label for="message" class="block mb-1 font-medium">Message</label>
-    <textarea name="message" id="message" rows="4" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-600 focus:border-transparent"></textarea>
-  </div>
-  <button type="submit" class="bg-pink-600 hover:bg-pink-700 text-white font-medium py-3 px-6 rounded-lg transition">
-    Send Message
-  </button>
-</form>
-
+            <input type="hidden" name="_captcha" value="false">
+            <div class="grid md:grid-cols-2 gap-4">
+              <div>
+                <label for="name" class="block mb-1 font-medium text-gray-900 dark:text-white">Name</label>
+                <input type="text" name="name" id="name" required class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white">
+              </div>
+              <div>
+                <label for="email" class="block mb-1 font-medium text-gray-900 dark:text-white">Email</label>
+                <input type="email" name="email" id="email" required class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white">
+              </div>
+            </div>
+            <div>
+              <label for="subject" class="block mb-1 font-medium text-gray-900 dark:text-white">Subject</label>
+              <input type="text" name="subject" id="subject" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white">
+            </div>
+            <div>
+              <label for="message" class="block mb-1 font-medium text-gray-900 dark:text-white">Message</label>
+              <textarea name="message" id="message" rows="4" required class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white"></textarea>
+            </div>
+            <button type="submit" class="btn-primary font-medium">Send Message</button>
+          </form>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Footer -->
- <!-- Footer Section -->
-<!-- Footer Section -->
-<footer class="bg-gray-900 text-white py-8"> <!-- Reduced py-12 to py-8 -->
-  <div class="container mx-auto px-6">
-    <div class="flex flex-col md:flex-row justify-between gap-6 md:gap-8"> <!-- Added gap classes -->
-      <!-- Logo and Brand Name -->
-      <div class="flex flex-col"> <!-- Removed mb-8 -->
-        <div class="flex items-center">
-          <img src="bunny logo new.jpg" alt="Bunny Logo" class="logo-img">
-          <h2 class="dancing-script text-3xl font-bold text-pink-400 ml-4">Design With Bunny</h2>
+  <!-- Footer Section -->
+  <footer class="bg-gray-900 text-white py-8">
+    <div class="container mx-auto px-6">
+      <div class="flex flex-col md:flex-row justify-between gap-6 md:gap-8">
+        <div class="flex flex-col">
+          <div class="flex items-center">
+            <img src="bunny logo new.jpg" alt="Bunny Logo" class="logo-img">
+            <h2 class="dancing-script text-3xl font-bold text-pink-400 ml-4">Design With Bunny</h2>
+          </div>
+          <p class="mt-2 text-gray-400 max-w-xs">
+            Creating stunning visual experiences through graphic design, video editing, and digital marketing.
+          </p>
         </div>
-        <p class="mt-2 text-gray-400 max-w-xs"> <!-- Reduced mt-4 to mt-2 -->
-          Creating stunning visual experiences through graphic design and video editing.
-        </p>
-      </div>
-      
-      <!-- Footer Links -->
-      <div class="grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-8"> <!-- Reduced gap -->
-        <div>
-          <h3 class="text-lg font-bold mb-2"> <!-- Reduced mb-4 to mb-2 -->
-            Quick Links
-          </h3>
-          <ul class="space-y-1"> <!-- Reduced space-y-2 to space-y-1 -->
-            <li><a href="index.html" class="text-gray-400 hover:text-pink-400 transition">Home</a></li>
-            <li><a href="index.html" class="text-gray-400 hover:text-pink-400 transition">About</a></li>
-            <li><a href="#services" class="text-gray-400 hover:text-pink-400 transition">Services</a></li>
-            <li><a href="#portfolio" class="text-gray-400 hover:text-pink-400 transition">Portfolio</a></li>
-            <li><a href="#contact" class="text-gray-400 hover:text-pink-400 transition">Contact</a></li>
-          </ul>
-        </div>
-        <div>
-          <h3 class="text-lg font-bold mb-2"> <!-- Reduced mb-4 to mb-2 -->
-            Services
-          </h3>
-          <ul class="space-y-1"> <!-- Reduced space-y-2 to space-y-1 -->
-            <li><a href="graphic-design.html" class="text-gray-400 hover:text-pink-400 transition">Graphic Design</a></li>
-            <li><a href="js/video-design.html" class="text-gray-400 hover:text-pink-400 transition">Video Editing</a></li>
-            <li><a href="digital-markting.html" class="text-gray-400 hover:text-pink-400 transition">Digital Marketing</a></li>
-          </ul>
-        </div>
-        <div>
-          <h3 class="text-lg font-bold mb-2"> <!-- Reduced mb-4 to mb-2 -->
-            Contact
-          </h3>
-          <ul class="space-y-1"> <!-- Reduced space-y-2 to space-y-1 -->
-            <li class="text-gray-400">Warangal, India</li>
-            <li class="text-gray-400">designwithbunny01@gmail.com</li>
-            <li class="text-gray-400">+91 7989241791</li>
-          </ul>
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
+          <div>
+            <h3 class="text-lg font-bold mb-2 text-white">Quick Links</h3>
+            <ul class="space-y-1">
+              <li><a href="#home" class="text-gray-400 hover:text-pink-400 transition">Home</a></li>
+              <li><a href="#about" class="text-gray-400 hover:text-pink-400 transition">About</a></li>
+              <li><a href="#services" class="text-gray-400 hover:text-pink-400 transition">Services</a></li>
+              <li><a href="#portfolio" class="text-gray-400 hover:text-pink-400 transition">Portfolio</a></li>
+              <li><a href="#contact" class="text-gray-400 hover:text-pink-400 transition">Contact</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-lg font-bold mb-2 text-white">Services</h3>
+            <ul class="space-y-1">
+              <li><a href="graphic-design.html" class="text-gray-400 hover:text-pink-400 transition">Graphic Design</a></li>
+              <li><a href="video-design.html" class="text-gray-400 hover:text-pink-400 transition">Video Editing</a></li>
+              <li><a href="digital-marketing.html" class="text-gray-400 hover:text-pink-400 transition">Digital Marketing</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-lg font-bold mb-2 text-white">Contact</h3>
+            <ul class="space-y-1">
+              <li class="text-gray-400">Hyderabad, India</li>
+              <li class="text-gray-400">designwithbunny01@gmail.com</li>
+              <li class="text-gray-400">+91 7989241791</li>
+            </ul>
+          </div>
         </div>
       </div>
+      <div class="border-t border-gray-800 mt-8 pt-6 text-center text-gray-500">
+        <p>© 2025 Design With Bunny. All rights reserved.</p>
+      </div>
     </div>
-    
-    <div class="border-t border-gray-800 mt-8 pt-6 text-center text-gray-500"> <!-- Reduced mt-12 to mt-8, pt-8 to pt-6 -->
-      <p>&copy; 2025 Design With Bunny. All rights reserved.</p>
-    </div>
-  </div>
-</footer>
+  </footer>
+
   <script>
     // Mobile menu toggle
     const mobileMenuButton = document.getElementById('mobile-menu-button');
@@ -553,8 +586,10 @@
         mobileMenu.classList.remove('active');
       });
     });
+    
+    // Theme toggle
     function toggleTheme() {
-      document.body.classList.toggle('light-mode');
+      document.body.classList.toggle('dark-mode');
       const themeIcon = document.querySelector('.theme-toggle i');
       themeIcon.classList.toggle('fa-moon');
       themeIcon.classList.toggle('fa-sun');
@@ -564,10 +599,8 @@
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function(e) {
         e.preventDefault();
-        
         const targetId = this.getAttribute('href');
         const targetElement = document.querySelector(targetId);
-        
         if (targetElement) {
           window.scrollTo({
             top: targetElement.offsetTop - 80,
@@ -576,7 +609,6 @@
         }
       });
     });
-    
   </script>
 </body>
 </html>

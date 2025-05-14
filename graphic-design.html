@@ -5,61 +5,77 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Graphic Design Gallery | Design With Bunny</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Poppins:wght@300;400;500;600&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Poppins:wght@300;400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --primary-color: #ff6f91;
-      --secondary-color: #00f9ff;
-      --dark-bg: #1a1a1a;
+      --primary-color: #ff4b91;
+      --secondary-color: #4bffa5;
+      --dark-bg: #1a1a2e;
+      --light-bg: #f7f9fc;
       --light-text: #ffffff;
-      --accent-color: #333333;
-      --section-bg: hsla(263, 88%, 27%, 0.95);
+      --dark-text: #2d2d2d;
+      --accent-color: #2a2a3e;
+      --overlay: rgba(26, 26, 46, 0.9);
     }
 
     body.light-mode {
-      --dark-bg: #ffffff;
-      --light-text: #333333;
-      --accent-color: #f0f0f0;
+      --dark-bg: var(--light-bg);
+      --light-text: var(--dark-text);
+      --accent-color: #e6e9f0;
     }
 
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+      transition: background-color 0.4s ease, color 0.4s ease;
     }
 
     body {
-      background-color: var(--dark-bg);
+      background: linear-gradient(135deg, var(--dark-bg) 0%, #2c2c4a 100%);
       color: var(--light-text);
-      font-family: 'Poppins', sans-serif;
-      line-height: 1.6;
-      transition: background-color 0.3s ease, color 0.3s ease;
+      font-family: 'Inter', sans-serif;
+      line-height: 1.7;
+      position: relative;
+    }
+
+    body.light-mode {
+      background: linear-gradient(135deg, var(--light-bg) 0%, #e6e9f0 100%);
     }
 
     .navbar {
-      background-color: var(--dark-bg);
+      background: rgba(26, 26, 46, 0.95);
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1.5rem 3rem;
+      padding: 1.2rem 2.5rem;
       position: sticky;
       top: 0;
       z-index: 1000;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-      border-bottom: 1px solid rgba(255, 111, 145, 0.2);
-      transition: background-color 0.3s ease;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.15);
+      border-bottom: 1px solid rgba(255, 75, 145, 0.25);
+    }
+
+    body.light-mode .navbar {
+      background: rgba(255, 255, 255, 0.95);
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+      border-bottom: 1px solid rgba(255, 75, 145, 0.2);
     }
 
     .navbar h2 {
       font-family: 'Dancing Script', cursive;
       color: var(--primary-color);
-      font-size: 2.2rem;
+      font-size: 2.3rem;
       font-weight: 600;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+      margin: 0;
     }
 
     .nav-links {
       display: flex;
-      gap: 2rem;
+      gap: 1.5rem;
+      align-items: center;
     }
 
     .nav-links button {
@@ -67,17 +83,37 @@
       border: none;
       color: var(--light-text);
       font-weight: 500;
-      font-family: 'Montserrat', sans-serif;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
       cursor: pointer;
-      font-size: 1.05rem;
+      padding: 0.5rem 0.8rem;
+      border-radius: 6px;
+      position: relative;
       transition: all 0.3s ease;
-      padding: 0.5rem 1rem;
-      border-radius: 4px;
+    }
+
+    body.light-mode .nav-links button {
+      color: var(--dark-text);
     }
 
     .nav-links button:hover {
       color: var(--primary-color);
-      transform: translateY(-2px);
+      transform: translateY(-1px);
+    }
+
+    .nav-links button::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background-color: var(--primary-color);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links button:hover::after {
+      width: 100%;
     }
 
     .nav-links .active {
@@ -87,25 +123,31 @@
 
     .hero-section {
       text-align: center;
-      padding: 4rem 2rem;
-      background: linear-gradient(135deg, #ff6f91, #00f9ff);
-      border-radius: 1rem;
-      margin-bottom: 3rem;
+      padding: 5rem 2rem;
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      border-radius: 16px;
+      margin: 2rem auto;
+      max-width: 1000px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     }
 
     .hero-section h1 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
+      font-size: 3rem;
+      margin-bottom: 1.5rem;
       color: #ffffff;
+      font-weight: 600;
+      letter-spacing: -0.5px;
     }
 
     .typewriter {
-      font-size: 1.5rem;
+      font-size: 1.6rem;
       color: #ffffff;
       overflow: hidden;
       white-space: nowrap;
-      border-right: 0.15em solid var(--primary-color);
-      animation: typing 4s steps(40, end) infinite, blink-caret 0.75s step-end infinite;
+      border-right: 0.15em solid #ffffff;
+      animation: typing 5s steps(50, end) infinite, blink-caret 0.75s step-end infinite;
+      max-width: 90%;
+      margin: 0 auto;
     }
 
     @keyframes typing {
@@ -116,7 +158,7 @@
 
     @keyframes blink-caret {
       from, to { border-color: transparent; }
-      50% { border-color: var(--primary-color); }
+      50% { border-color: #ffffff; }
     }
 
     .gallery-container {
@@ -135,26 +177,26 @@
     .gallery-item {
       position: relative;
       overflow: hidden;
-      border-radius: 10px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-      transition: all 0.3s ease;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+      transition: all 0.4s ease;
       width: 100%;
     }
 
     .gallery-item:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 25px rgba(238, 236, 236, 0.4);
+      transform: translateY(-8px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
     }
 
     .gallery-item img {
       width: 100%;
       height: auto;
       display: block;
-      transition: transform 0.5s ease;
+      transition: transform 0.6s ease;
     }
 
     .gallery-item:hover img {
-      transform: scale(1.02);
+      transform: scale(1.03);
     }
 
     .gallery-caption {
@@ -163,68 +205,92 @@
       left: 0;
       right: 0;
       padding: 1rem;
-      color: #333333;
+      color: var(--dark-text);
       z-index: 2;
-      background: rgba(250, 248, 248, 0.973);
+      background: rgba(255, 255, 255, 0.95);
       text-align: center;
       opacity: 0;
-      transition: opacity 0.3s ease;
+      transition: opacity 0.4s ease;
+      font-size: 0.95rem;
+      font-weight: 500;
     }
 
     .gallery-item:hover .gallery-caption {
       opacity: 1;
     }
-    
+
     .theme-toggle {
       background: none;
       border: none;
       color: var(--light-text);
       font-size: 1.5rem;
       cursor: pointer;
-      transition: color 0.3s ease;
+      transition: transform 0.3s ease, color 0.3s ease;
+    }
+
+    body.light-mode .theme-toggle {
+      color: var(--dark-text);
+    }
+
+    .theme-toggle:hover {
+      transform: rotate(25deg) scale(1.1);
+      color: var(--primary-color);
     }
 
     footer {
-      background: var(--dark-bg);
-      padding: 3rem 2rem;
+      background: rgba(26, 26, 46, 0.95);
+      padding: 2.5rem 2rem;
       text-align: center;
       margin-top: 3rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      transition: background-color 0.3s ease;
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+    }
+
+    body.light-mode footer {
+      background: rgba(255, 255, 255, 0.95);
+      border-top: 1px solid rgba(0, 0, 0, 0.1);
     }
 
     .footer-social {
       display: flex;
       justify-content: center;
-      gap: 1.5rem;
-      margin-bottom: 1.5rem;
+      gap: 1.2rem;
+      margin-bottom: 1.2rem;
     }
 
     .footer-social a {
-      font-size: 1.3rem;
+      font-size: 1.4rem;
       color: var(--light-text);
-      opacity: 0.7;
-      transition: all 0.3s ease;
-      width: 45px;
-      height: 45px;
+      width: 48px;
+      height: 48px;
       display: flex;
       align-items: center;
       justify-content: center;
       border-radius: 50%;
-      background: rgba(255, 255, 255, 0.05);
+      background: rgba(255, 255, 255, 0.08);
+      transition: all 0.3s ease;
+    }
+
+ in .gallery-caption
+    body.light-mode .footer-social a {
+      color: var(--dark-text);
+      background: rgba(0, 0, 0, 0.08);
     }
 
     .footer-social a:hover {
       color: var(--primary-color);
-      background: rgba(255, 111, 145, 0.1);
-      transform: translateY(-3px);
-      opacity: 1;
+      background: rgba(255, 75, 145, 0.15);
+      transform: translateY(-3px) scale(1.05);
     }
 
     .copyright {
-      color: var(--light-text);
-      opacity: 0.5;
-      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 0.95rem;
+      font-weight: 400;
+    }
+
+    body.light-mode .copyright {
+      color: rgba(0, 0, 0, 0.6);
     }
 
     .logo-container {
@@ -233,13 +299,19 @@
     }
 
     .logo-img {
-      width: 60px;
-      height: 60px;
+      width: 64px;
+      height: 64px;
       border-radius: 50%;
       object-fit: cover;
-      border: 2px solid var(--primary-color);
-      box-shadow: 0 0 15px rgba(255, 111, 145, 0.4);
-      margin-right: 1rem;
+      border: 3px solid var(--primary-color);
+      box-shadow: 0 0 20px rgba(255, 75, 145, 0.5);
+      margin-right: 0.8rem;
+      transition: all 0.4s ease;
+    }
+
+    .logo-img:hover {
+      transform: rotate(15deg) scale(1.1);
+      box-shadow: 0 0 25px rgba(255, 75, 145, 0.7);
     }
 
     @media (max-width: 768px) {
@@ -250,229 +322,297 @@
       }
 
       .nav-links {
-        gap: 1rem;
+        gap: 0.8rem;
         flex-wrap: wrap;
         justify-content: center;
         margin-top: 1rem;
       }
-      
-      .gallery-header h1 {
+
+      .hero-section {
+        padding: 3rem 1.5rem;
+      }
+
+      .hero-section h1 {
         font-size: 2.2rem;
       }
-      
-      .gallery-header p {
-        font-size: 1rem;
+
+      .typewriter {
+        font-size: 1.2rem;
       }
-      
+
       .gallery-container {
         padding: 1rem;
       }
-      
+
       .gallery {
         gap: 1.5rem;
+      }
+
+      .logo-img {
+        width: 52px;
+        height: 52px;
+      }
+
+      .navbar h2 {
+        font-size: 2rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-section h1 {
+        font-size: 1.8rem;
+      }
+
+      .typewriter {
+        font-size: 1rem;
+      }
+
+      .logo-img {
+        width: 44px;
+        height: 44px;
+      }
+
+      .navbar h2 {
+        font-size: 1.8rem;
       }
     }
   </style>
 </head>
 <body>
-<div class="navbar">
-  <div class="logo-container">
-    <img src="bunny logo new.jpg" alt="Bunny Logo" class="logo-img">
-    <h2>Design With Bunny</h2>
+  <div class="navbar">
+    <div class="logo-container">
+      <img src="bunny logo new.jpg" alt="Bunny Logo" class="logo-img">
+      <h2>Design With Bunny</h2>
+    </div>
+    <div class="nav-links">
+      <button onclick="window.location.href='index.html'">Home</button>
+      <button onclick="window.location.href='graphic-design.html'" class="active">Graphic Design</button>
+      <button onclick="window.location.href='video-design.html'">Video Editing</button>
+      <button onclick="window.location.href='digital-marketing.html'">Digital Marketing</button>
+      <button onclick="window.location.href='contact.html'">Contact</button>
+      <button class="theme-toggle" onclick="toggleTheme()"><i class="fas fa-moon"></i></button>
+    </div>
   </div>
-  <div class="nav-links">
-    <button onclick="window.location.href='index.html'">Home</button>
-    <button onclick="window.location.href='graphic-design.html'" class="active">Graphic Design</button>
-    <button onclick="window.location.href='video-design.html'">Video Editing</button>
-    <button onclick="window.location.href='contact.html'">Contact</button>
-    <button class="theme-toggle" onclick="toggleTheme()"><i class="fas fa-moon"></i></button>
-  </div>
-</div>
 
-<div class="max-w-7xl mx-auto px-4 py-10">
+  <div class="max-w-7xl mx-auto px-4 py-10">
     <!-- Hero Section -->
     <section class="hero-section">
       <h1>Graphic Design Portfolio</h1>
-      <p class="typewriter">Explore my collection of creative designs, branding projects, and visual concepts that showcase my design philosophy and technical skills.</p>
+      <p class="typewriter">Explore my creative design and branding work.</p>
     </section>
 
-<div class="gallery-container">
-  <div class="gallery">
-    <div class="gallery-item">
-      <div class="gallery-item">
-  <img src="1.png" alt="Design Work 1">
-  <div class="gallery-caption"></div>
-</div>
-<div class="gallery-item">
-  <img src="2.png" alt="Design Work 2">
-</div>
-<div class="gallery-item">
-  <img src="3.png" alt="Design Work 3">
-</div>
-<div class="gallery-item">
-  <img src="4.png" alt="Design Work 4">
-</div>
-<div class="gallery-item">
-  <img src="5.png" alt="Design Work 5">
-</div>
-<div class="gallery-item">
-  <img src="6.png" alt="Design Work 6">
-</div>
-<div class="gallery-item">
-  <img src="7.png" alt="Design Work 7">
-</div>
-<div class="gallery-item">
-  <img src="8.png" alt="Design Work 8">
-</div>
-<div class="gallery-item">
-  <img src="9.png" alt="Design Work 9">
-</div>
-<div class="gallery-item">
-  <img src="10.png" alt="Design Work 10">
-</div>
-<div class="gallery-item">
-  <img src="11.png" alt="Design Work 11">
-</div>
-<div class="gallery-item">
-  <img src="12.png" alt="Design Work 12">
-</div>
-<div class="gallery-item">
-  <img src="13.png" alt="Design Work 13">
-</div>
-<div class="gallery-item">
-  <img src="14.png" alt="Design Work 14">
-</div>
-<div class="gallery-item">
-  <img src="15.png" alt="Design Work 15">
-</div>
-<div class="gallery-item">
-  <img src="16.png" alt="Design Work 16">
-</div>
-<div class="gallery-item">
-  <img src="17.png" alt="Design Work 17">
-</div>
-<div class="gallery-item">
-  <img src="18.png" alt="Design Work 18">
-</div>
-<div class="gallery-item">
-  <img src="19.png" alt="Design Work 19">
-</div>
-<div class="gallery-item">
-  <img src="20.png" alt="Design Work 20">
-</div>
-<div class="gallery-item">
-  <img src="21.png" alt="Design Work 21">
-</div>
-<div class="gallery-item">
-  <img src="22.png" alt="Design Work 22">
-</div>
-<div class="gallery-item">
-  <img src="23.png" alt="Design Work 23">
-</div>
-<div class="gallery-item">
-  <img src="24.png" alt="Design Work 24">
-</div>
-<div class="gallery-item">
-  <img src="25.png" alt="Design Work 25">
-</div>
-<div class="gallery-item">
-  <img src="26.png" alt="Design Work 26">
-</div>
-<div class="gallery-item">
-  <img src="27.png" alt="Design Work 27">
-</div>
-<div class="gallery-item">
-  <img src="28.png" alt="Design Work 28">
-</div>
-<div class="gallery-item">
-  <img src="29.png" alt="Design Work 29">
-</div>
-<div class="gallery-item">
-  <img src="30.png" alt="Design Work 30">
-</div>
-<div class="gallery-item">
-  <img src="31.png" alt="Design Work 31">
-</div>
-<div class="gallery-item">
-  <img src="32.png" alt="Design Work 32">
-</div>
-<div class="gallery-item">
-  <img src="33.png" alt="Design Work 33">
-</div>
-<div class="gallery-item">
-  <img src="34.png" alt="Design Work 34">
-</div>
-<div class="gallery-item">
-  <img src="35.png" alt="Design Work 35">
-</div>
-<div class="gallery-item">
-  <img src="36.png" alt="Design Work 36">
-</div>
-<div class="gallery-item">
-  <img src="37.png" alt="Design Work 37">
-</div>
-<div class="gallery-item">
-  <img src="38.png" alt="Design Work 38">
-</div>
-<div class="gallery-item">
-  <img src="39.png" alt="Design Work 39">
-</div>
-<div class="gallery-item">
-  <img src="40.png" alt="Design Work 40">
-</div>
-<div class="gallery-item">
-  <img src="41.png" alt="Design Work 41">
-</div>
-<div class="gallery-item">
-  <img src="42.png" alt="Design Work 42">
-</div>
-<div class="gallery-item">
-  <img src="43.png" alt="Design Work 43">
-</div>
-
+    <div class="gallery-container">
+      <div class="gallery">
+        <div class="gallery-item">
+          <img src="1.png" alt="Design Work 1">
+          <div class="gallery-caption">Logo Design</div>
+        </div>
+        <div class="gallery-item">
+          <img src="2.png" alt="Design Work 2">
+          <div class="gallery-caption">Poster Design</div>
+        </div>
+        <div class="gallery-item">
+          <img src="3.png" alt="Design Work 3">
+          <div class="gallery-caption">Social Media Graphic</div>
+        </div>
+        <div class="gallery-item">
+          <img src="4.png" alt="Design Work 4">
+          <div class="gallery-caption">Branding Package</div>
+        </div>
+        <div class="gallery-item">
+          <img src="5.png" alt="Design Work 5">
+          <div class="gallery-caption">Flyer Design</div>
+        </div>
+        <div class="gallery-item">
+          <img src="6.png" alt="Design Work 6">
+          <div class="gallery-caption">Business Card</div>
+        </div>
+        <div class="gallery-item">
+          <img src="7.png" alt="Design Work 7">
+          <div class="gallery-caption">Banner Ad</div>
+        </div>
+        <div class="gallery-item">
+          <img src="8.png" alt="Design Work 8">
+          <div class="gallery-caption">Packaging Design</div>
+        </div>
+        <div class="gallery-item">
+          <img src="9.png" alt="Design Work 9">
+          <div class="gallery-caption">Infographic</div>
+        </div>
+        <div class="gallery-item">
+          <img src="10.png" alt="Design Work 10">
+          <div class="gallery-caption">Website Mockup</div>
+        </div>
+        <div class="gallery-item">
+          <img src="11.png" alt="Design Work 11">
+          <div class="gallery-caption">App Interface</div>
+        </div>
+        <div class="gallery-item">
+          <img src="12.png" alt="Design Work 12">
+          <div class="gallery-caption">Email Template</div>
+        </div>
+        <div class="gallery-item">
+          <img src="13.png" alt="Design Work 13">
+          <div class="gallery-caption">Brochure Design</div>
+        </div>
+        <div class="gallery-item">
+          <img src="14.png" alt="Design Work 14">
+          <div class="gallery-caption">Menu Design</div>
+        </div>
+        <div class="gallery-item">
+          <img src="15.png" alt="Design Work 15">
+          <div class="gallery-caption">Event Poster</div>
+        </div>
+        <div class="gallery-item">
+          <img src="16.png" alt="Design Work 16">
+          <div class="gallery-caption">Product Label</div>
+        </div>
+        <div class="gallery-item">
+          <img src="17.png" alt="Design Work 17">
+          <div class="gallery-caption">T-Shirt Design</div>
+        </div>
+        <div class="gallery-item">
+          <img src="18.png" alt="Design Work 18">
+          <div class="gallery-caption">Book Cover</div>
+        </div>
+        <div class="gallery-item">
+          <img src="19.png" alt="Design Work 19">
+          <div class="gallery-caption">Magazine Layout</div>
+        </div>
+        <div class="gallery-item">
+          <img src="20.png" alt="Design Work 20">
+          <div class="gallery-caption">Signage Design</div>
+        </div>
+        <div class="gallery-item">
+          <img src="21.png" alt="Design Work 21">
+          <div class="gallery-caption">Invitation Card</div>
+        </div>
+        <div class="gallery-item">
+          <img src="22.png" alt="Design Work 22">
+          <div class="gallery-caption">Billboard Design</div>
+        </div>
+        <div class="gallery-item">
+          <img src="23.png" alt="Design Work 23">
+          <div class="gallery-caption">Vehicle Wrap</div>
+        </div>
+        <div class="gallery-item">
+          <img src="24.png" alt="Design Work 24">
+          <div class="gallery-caption">Presentation Slide</div>
+        </div>
+        <div class="gallery-item">
+          <img src="25.png" alt="Design Work 25">
+          <div class="gallery-caption">Sticker Design</div>
+        </div>
+        <div class="gallery-item">
+          <img src="26.png" alt="Design Work 26">
+          <div class="gallery-caption">Calendar Design</div>
+        </div>
+        <div class="gallery-item">
+          <img src="27.png" alt="Design Work 27">
+          <div class="gallery-caption">Greeting Card</div>
+        </div>
+        <div class="gallery-item">
+          <img src="28.png" alt="Design Work 28">
+          <div class="gallery-caption">Digital Ad</div>
+        </div>
+        <div class="gallery-item">
+          <img src="29.png" alt="Design Work 29">
+          <div class="gallery-caption">Icon Set</div>
+        </div>
+        <div class="gallery-item">
+          <img src="30.png" alt="Design Work 30">
+          <div class="gallery-caption">Typography Poster</div>
+        </div>
+        <div class="gallery-item">
+          <img src="31.png" alt="Design Work 31">
+          <div class="gallery-caption">Photo Manipulation</div>
+        </div>
+        <div class="gallery-item">
+          <img src="32.png" alt="Design Work 32">
+          <div class="gallery-caption">Album Cover</div>
+        </div>
+        <div class="gallery-item">
+          <img src="33.png" alt="Design Work 33">
+          <div class="gallery-caption">Retail Display</div>
+        </div>
+        <div class="gallery-item">
+          <img src="34.png" alt="Design Work 34">
+          <div class="gallery-caption">Trade Show Booth</div>
+        </div>
+        <div class="gallery-item">
+          <img src="35.png" alt="Design Work 35">
+          <div class="gallery-caption">Wedding Invitation</div>
+        </div>
+        <div class="gallery-item">
+          <img src="36.png" alt="Design Work 36">
+          <div class="gallery-caption">Restaurant Menu</div>
+        </div>
+        <div class="gallery-item">
+          <img src="37.png" alt="Design Work 37">
+          <div class="gallery-caption">Product Catalog</div>
+        </div>
+        <div class="gallery-item">
+          <img src="38.png" alt="Design Work 38">
+          <div class="gallery-caption">Annual Report</div>
+        </div>
+        <div class="gallery-item">
+          <img src="39.png" alt="Design Work 39">
+          <div class="gallery-caption">Gift Card Design</div>
+        </div>
+        <div class="gallery-item">
+          <img src="40.png" alt="Design Work 40">
+          <div class="gallery-caption">Event Ticket</div>
+        </div>
+        <div class="gallery-item">
+          <img src="41.png" alt="Design Work 41">
+          <div class="gallery-caption">Wall Art</div>
+        </div>
+        <div class="gallery-item">
+          <img src="42.png" alt="Design Work 42">
+          <div class="gallery-caption">Certificate Design</div>
+        </div>
+        <div class="gallery-item">
+          <img src="43.png" alt="Design Work 43">
+          <div class="gallery-caption">Merchandise Design</div>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
 
-<footer>
-  <div class="footer-social">
-    <a href="#"><i class="fab fa-instagram"></i></a>
-    <a href="#"><i class="fab fa-behance"></i></a>
-    <a href="#"><i class="fab fa-dribbble"></i></a>
-  </div>
-  <p class="copyright">&copy; 2025 Design With Bunny. All rights reserved.</p>
-</footer>
+  <footer>
+    <div class="footer-social">
+      <a href="https://wa.me/917989241791" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+      <a href="https://t.me/jasyaediting" target="_blank" title="Telegram"><i class="fab fa-telegram"></i></a>
+      <a href="https://www.instagram.com/designwith_bunny" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.linkedin.com/in/jashwanth-parikirala-9a68b4269" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+    </div>
+    <p class="copyright">© 2025 Design With Bunny. All rights reserved.</p>
+  </footer>
 
-<script>
-  // Theme Toggle
-  function toggleTheme() {
-    document.body.classList.toggle('light-mode');
-    const themeIcon = document.querySelector('.theme-toggle i');
-    
-    // Save preference to localStorage
-    const isLightMode = document.body.classList.contains('light-mode');
-    localStorage.setItem('lightMode', isLightMode);
-    
-    // Update icon
-    if (isLightMode) {
-      themeIcon.classList.replace('fa-moon', 'fa-sun');
-    } else {
-      themeIcon.classList.replace('fa-sun', 'fa-moon');
+  <script>
+    function toggleTheme() {
+      document.body.classList.toggle('light-mode');
+      const themeIcon = document.querySelector('.theme-toggle i');
+      const isLightMode = document.body.classList.contains('light-mode');
+      localStorage.setItem('lightMode', isLightMode);
+      if (isLightMode) {
+        themeIcon.classList.replace('fa-moon', 'fa-sun');
+      } else {
+        themeIcon.classList.replace('fa-sun', 'fa-moon');
+      }
     }
-  }
 
-  // Check for saved theme preference on page load
-  document.addEventListener('DOMContentLoaded', function() {
-    const savedMode = localStorage.getItem('lightMode') === 'true';
-    const themeIcon = document.querySelector('.theme-toggle i');
-    
-    if (savedMode) {
-      document.body.classList.add('light-mode');
-      themeIcon.classList.replace('fa-moon', 'fa-sun');
-    } else {
-      document.body.classList.remove('light-mode');
-      themeIcon.classList.replace('fa-sun', 'fa-moon');
-    }
-  });
-</script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const savedMode = localStorage.getItem('lightMode') === 'true';
+      const themeIcon = document.querySelector('.theme-toggle i');
+      if (savedMode) {
+        document.body.classList.add('light-mode');
+        themeIcon.classList.replace('fa-moon', 'fa-sun');
+      } else {
+        document.body.classList.remove('light-mode');
+        themeIcon.classList.replace('fa-sun', 'fa-moon');
+      }
+    });
+  </script>
 </body>
 </html>
