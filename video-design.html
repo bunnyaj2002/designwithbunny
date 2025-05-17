@@ -14,9 +14,7 @@
       --primary-color: #ff6f91;
       --secondary-color: #00f9ff;
       --dark-bg: #0e0e1a;
-      --light-bg: #f8f8f8;
       --light-text: #f8f8f8;
-      --dark-text: #1a1a1a;
       --accent-color: #845ec2;
     }
 
@@ -24,12 +22,6 @@
       font-family: 'Poppins', sans-serif;
       background-color: var(--dark-bg);
       color: var(--light-text);
-      transition: all 0.3s ease;
-    }
-
-    body.light-mode {
-      background-color: var(--light-bg);
-      color: var(--dark-text);
     }
 
     h1, h2 {
@@ -42,108 +34,6 @@
       font-size: 3rem;
     }
 
-    /* Video Container Styles */
-    .video-container {
-      position: relative;
-      width: 100%;
-      border-radius: 1rem;
-      overflow: hidden;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.4);
-      background: #000;
-      transition: transform 0.3s ease;
-    }
-    
-    .video-container:hover {
-      transform: scale(1.03);
-    }
-    
-    .video-container.reel {
-      aspect-ratio: 9/16;
-    }
-    
-    .video-container.wide {
-      aspect-ratio: 16/9;
-    }
-    
-    .video-thumbnail {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      cursor: pointer;
-      overflow: hidden;
-    }
-    
-    .video-thumbnail img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.5s ease;
-    }
-    
-    .video-container:hover .video-thumbnail img {
-      transform: scale(1.1);
-    }
-    
-    .play-button {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 60px;
-      height: 60px;
-      background-color: rgba(255, 111, 145, 0.8);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background-color 0.3s ease, box-shadow 0.3s ease;
-    }
-    
-    .video-container:hover .play-button {
-      background-color: rgba(255, 111, 145, 1);
-      box-shadow: 0 0 15px rgba(255, 111, 145, 0.7);
-    }
-    
-    .play-button i {
-      color: white;
-      font-size: 24px;
-      margin-left: 5px;
-    }
-    
-    .video-iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border: 0;
-      display: none;
-    }
-    
-    .video-iframe.active {
-      display: block;
-    }
-
-    .loading-spinner {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      display: none;
-      width: 40px;
-      height: 40px;
-      border: 4px solid #fff;
-      border-top: 4px solid var(--primary-color);
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-    }
-
-    @keyframes spin {
-      0% { transform: translate(-50%, -50%) rotate(0deg); }
-      100% { transform: translate(-50%, -50%) rotate(360deg); }
-    }
-
-    /* Navbar Styles */
     .navbar {
       display: flex;
       justify-content: space-between;
@@ -155,11 +45,6 @@
       z-index: 100;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
       border-bottom: 1px solid rgba(255, 111, 145, 0.2);
-    }
-
-    body.light-mode .navbar {
-      background-color: rgba(255, 255, 255, 0.9);
-      border-bottom: 1px solid rgba(255, 111, 145, 0.4);
     }
 
     .logo-title {
@@ -177,7 +62,6 @@
     .nav-links {
       display: flex;
       gap: 1.5rem;
-      align-items: center;
     }
 
     .nav-links button {
@@ -190,10 +74,6 @@
       padding: 0.5rem 1rem;
       border-radius: 0.5rem;
       transition: all 0.3s ease;
-    }
-
-    body.light-mode .nav-links button {
-      color: var(--dark-text);
     }
 
     .nav-links button:hover {
@@ -221,163 +101,46 @@
       box-shadow: 0 0 20px rgba(255, 111, 145, 0.6);
     }
 
-    /* Hero Section */
-    .hero-section {
-      text-align: center;
-      padding: 4rem 2rem;
-      background: linear-gradient(135deg, #ff6f91, #00f9ff);
-      border-radius: 1rem;
-      margin-bottom: 3rem;
-    }
-
-    .hero-section h1 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-    }
-
-    .typewriter {
-      font-size: 1.5rem;
-      color: var(--light-text);
+    .video-wrapper {
+      position: relative;
+      padding-bottom: 177.78%; /* 9:16 */
+      height: 0;
       overflow: hidden;
-      white-space: nowrap;
-      border-right: 0.15em solid var(--primary-color);
-      animation: typing 4s steps(40, end) infinite, blink-caret 0.75s step-end infinite;
+      border-radius: 1rem;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+      transition: transform 0.3s ease;
     }
 
-    @keyframes typing {
-      0% { width: 0; }
-      50% { width: 100%; }
-      100% { width: 0; }
+    .video-wrapper:hover {
+      transform: scale(1.03);
     }
 
-    @keyframes blink-caret {
-      from, to { border-color: transparent; }
-      50% { border-color: var(--primary-color); }
+    .video-wrapper.wide {
+      padding-bottom: 56.25%; /* 16:9 */
     }
 
-    /* Filter Buttons */
-    .filter-buttons {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
+    .video-wrapper iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      border: 0;
+      border-radius: 1rem;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      font-weight: 600;
+      border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+      padding-bottom: 0.5rem;
       margin-bottom: 2rem;
     }
 
-    .filter-btn {
-      padding: 0.5rem 1.5rem;
-      background-color: rgba(255, 111, 145, 0.2);
-      color: var(--light-text);
-      border: none;
-      border-radius: 0.5rem;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-
-    body.light-mode .filter-btn {
-      color: var(--dark-text);
-      background-color: rgba(255, 111, 145, 0.1);
-    }
-
-    .filter-btn:hover, .filter-btn.active {
-      background-color: var(--primary-color);
-      color: #fff;
-    }
-
-    /* Video Info */
-    .video-info {
-      padding: 1rem;
-      text-align: center;
-    }
-
-    .video-info h3 {
-      font-size: 1.2rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .video-info p {
-      font-size: 0.9rem;
-      color: rgba(255, 255, 255, 0.7);
-    }
-
-    body.light-mode .video-info p {
-      color: rgba(0, 0, 0, 0.7);
-    }
-
-    /* Stats Section */
-    .stats-section {
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      padding: 2rem;
-      background-color: rgba(255, 111, 145, 0.1);
-      border-radius: 1rem;
-      margin-bottom: 3rem;
-    }
-
-    .stat {
-      text-align: center;
-    }
-
-    .stat h3 {
-      font-size: 2rem;
-      color: var(--primary-color);
-    }
-
-    .stat p {
-      font-size: 1rem;
-    }
-
-    /* Back-to-Top Button */
-    .back-to-top {
-      position: fixed;
-      bottom: 2rem;
-      right: 2rem;
-      background-color: var(--primary-color);
-      color: #fff;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      opacity: 0;
-      transition: opacity 0.3s ease, transform 0.3s ease;
-    }
-
-    .back-to-top.show {
-      opacity: 1;
-    }
-
-    .back-to-top:hover {
-      transform: scale(1.1);
-    }
-
-    /* Theme Toggle */
-    .theme-toggle {
-      background: none;
-      border: none;
-      color: var(--light-text);
-      font-size: 1.5rem;
-      cursor: pointer;
-    }
-
-    body.light-mode .theme-toggle {
-      color: var(--dark-text);
-    }
-
-    /* Footer Styles */
     footer {
       background: var(--dark-bg);
       padding: 3rem 2rem;
       text-align: center;
       margin-top: 3rem;
       border-top: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    body.light-mode footer {
-      background: var(--light-bg);
-      border-top: 1px solid rgba(0, 0, 0, 0.1);
     }
 
     .footer-social {
@@ -398,12 +161,6 @@
       justify-content: center;
       border-radius: 50%;
       background: rgba(255, 255, 255, 0.05);
-      position: relative;
-    }
-
-    body.light-mode .footer-social a {
-      color: rgba(0, 0, 0, 0.7);
-      background: rgba(0, 0, 0, 0.05);
     }
 
     .footer-social a:hover {
@@ -412,32 +169,9 @@
       transform: translateY(-3px);
     }
 
-    .footer-social a::after {
-      content: attr(data-tooltip);
-      position: absolute;
-      bottom: 100%;
-      background-color: var(--primary-color);
-      color: #fff;
-      padding: 0.5rem;
-      border-radius: 0.3rem;
-      font-size: 0.8rem;
-      white-space: nowrap;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-      pointer-events: none;
-    }
-
-    .footer-social a:hover::after {
-      opacity: 1;
-    }
-
     .copyright {
       color: rgba(255, 255, 255, 0.5);
       font-size: 0.9rem;
-    }
-
-    body.light-mode .copyright {
-      color: rgba(0, 0, 0, 0.5);
     }
 
     @media (max-width: 768px) {
@@ -468,23 +202,6 @@
         width: 50px;
         height: 50px;
       }
-      
-      .play-button {
-        width: 50px;
-        height: 50px;
-      }
-
-      .hero-section h1 {
-        font-size: 2rem;
-      }
-
-      .typewriter {
-        font-size: 1.2rem;
-      }
-
-      .stats-section {
-        flex-direction: column;
-      }
     }
     
     @media (max-width: 480px) {
@@ -492,950 +209,133 @@
         width: 40px;
         height: 40px;
       }
-      
-      .play-button {
-        width: 40px;
-        height: 40px;
-      }
-      
-      .play-button i {
-        font-size: 18px;
-      }
     }
   </style>
+
 </head>
 <body>
   <!-- Navbar Start -->
   <div class="navbar">
+    <!-- Logo and Title Wrapper -->
     <div class="logo-title">
       <img src="bunny logo new.jpg" alt="Bunny Logo" class="logo-img">
       <h2>Design With Bunny</h2>
     </div>
+
+    <!-- Navigation Links -->
     <div class="nav-links">
       <button onclick="window.location.href='index.html'">Home</button>
       <button onclick="window.location.href='graphic-design.html'">Graphic Design</button>
       <button onclick="window.location.href='video-design.html'" class="active">Video Editing</button>
-              <button onclick="window.location.href='digital-markting.html'">Digital Marketing</button>
-
       <button onclick="window.location.href='contact.html'">Contact</button>
-      <button class="theme-toggle" onclick="toggleTheme()"><i class="fas fa-moon"></i></button>
     </div>
   </div>
   <!-- Navbar End -->
 
   <div class="max-w-7xl mx-auto px-4 py-10">
-    <!-- Hero Section -->
-    <section class="hero-section">
-      <h1>Video Editing Portfolio</h1>
-      <p class="typewriter">Crafting Stories That Captivate!</p>
-    </section>
-
-    <!-- Stats Section -->
-    <section class="stats-section">
-      <div class="stat">
-        <h3>150+</h3>
-        <p>Videos Created</p>
-      </div>
-      <div class="stat">
-        <h3>100K+</h3>
-        <p>Total Views</p>
-      </div>
-      <div class="stat">
-        <h3>1.5+</h3>
-        <p>Years of Experience</p>
-      </div>
-      <div class="stat">
-        <h3>10+</h3>
-        <p>Brands & Business</p>
-      </div>
-    </section>
-
-    <!-- Filter Buttons -->
-    <div class="filter-buttons">
-      <button class="filter-btn active" onclick="filterVideos('all')">All</button>
-      <button class="filter-btn" onclick="filterVideos('reel')">Reels</button>
-      <button class="filter-btn" onclick="filterVideos('wide')">Long Videos</button>
-    </div>
+    <!-- Header -->
+    <header class="mb-12 text-center">
+      <h1 class="brand-header mb-2">Video Editing Portfolio</h1>
+    </header>
 
     <!-- Reels Section -->
-    <section class="mb-16 video-section" id="reels">
+    <section class="mb-16">
       <h2 class="section-title text-pink-400">🎞 Reels (9:16)</h2>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        <!-- Reel 1 -->
-        <div class="video-container reel">
-          <div class="video-thumbnail" onclick="loadVideo(this, 'K0MqlYhd7WQ')">
-            <img src="https://img.youtube.com/vi/K0MqlYhd7WQ/maxresdefault.jpg" alt="Reel thumbnail">
-            <div class="play-button">
-              <i class="fas fa-play"></i>
-            </div>
-            <div class="loading-spinner"></div>
-          </div>
-          <iframe class="video-iframe" id="K0MqlYhd7WQ" data-src="https://www.youtube.com/embed/K0MqlYhd7WQ?playsinline=1&enablejsapi=1&rel=0&modestbranding=1" frameborder="0" allowfullscreen></iframe>
-          <div class="video-info">
-            <h3>Dynamic Reel 1</h3>
-            <p>Short, vibrant clip showcasing quick edits.</p>
-          </div>
-        </div>
-        <!-- Reel 2 -->
-        <div class="video-container reel">
-          <div class="video-thumbnail" onclick="loadVideo(this, 'iuEul7ZLhe0')">
-            <img src="https://img.youtube.com/vi/iuEul7ZLhe0/maxresdefault.jpg" alt="Reel thumbnail">
-            <div class="play-button">
-              <i class="fas fa-play"></i>
-            </div>
-            <div class="loading-spinner"></div>
-          </div>
-          <iframe class="video-iframe" id="iuEul7ZLhe0" data-src="https://www.youtube.com/embed/iuEul7ZLhe0?playsinline=1&enablejsapi=1&rel=0&modestbranding=1" frameborder="0" allowfullscreen></iframe>
-          <div class="video-info">
-            <h3>Energetic Reel 2</h3>
-            <p>Fast-paced montage with cool transitions.</p>
-          </div>
-        </div>
-        <!-- Reel 3 -->
-        <div class="video-container reel">
-          <div class="video-thumbnail" onclick="loadVideo(this, 'mKGG0XKW81w')">
-            <img src="https://img.youtube.com/vi/mKGG0XKW81w/maxresdefault.jpg" alt="Reel thumbnail">
-            <div class="play-button">
-              <i class="fas fa-play"></i>
-            </div>
-            <div class="loading-spinner"></div>
-          </div>
-          <iframe class="video-iframe" id="mKGG0XKW81w" data-src="https://www.youtube.com/embed/mKGG0XKW81w?playsinline=1&enablejsapi=1&rel=0&modestbranding=1" frameborder="0" allowfullscreen></iframe>
-          <div class="video-info">
-            <h3>Creative Reel 3</h3>
-            <p>Unique storytelling in a short format.</p>
-          </div>
-        </div>
-        <!-- Reel 4 -->
-        <div class="video-container reel">
-          <div class="video-thumbnail" onclick="loadVideo(this, 'btZ00jzh8Hk')">
-            <img src="https://img.youtube.com/vi/btZ00jzh8Hk/maxresdefault.jpg" alt="Reel thumbnail">
-            <div class="play-button">
-              <i class="fas fa-play"></i>
-            </div>
-            <div class="loading-spinner"></div>
-          </div>
-          <iframe class="video-iframe" id="btZ00jzh8Hk" data-src="https://www.youtube.com/embed/btZ00jzh8Hk?playsinline=1&enablejsapi=1&rel=0&modestbranding=1" frameborder="0" allowfullscreen></iframe>
-          <div class="video-info">
-            <h3>Vibrant Reel 4</h3>
-            <p>Colorful edits with smooth effects.</p>
-          </div>
-        </div>
-        <!-- Reel 5 -->
-        <div class="video-container reel">
-          <div class="video-thumbnail" onclick="loadVideo(this, '57Y6X28UwSY')">
-            <img src="https://img.youtube.com/vi/57Y6X28UwSY/maxresdefault.jpg" alt="Reel thumbnail">
-            <div class="play-button">
-              <i class="fas fa-play"></i>
-            </div>
-            <div class="loading-spinner"></div>
-          </div>
-          <iframe class="video-iframe" id="57Y6X28UwSY" data-src="https://www.youtube.com/embed/57Y6X28UwSY?playsinline=1&enablejsapi=1&rel=0&modestbranding=1" frameborder="0" allowfullscreen></iframe>
-          <div class="video-info">
-            <h3>Trendy Reel 5</h3>
-            <p>Modern edits for social media.</p>
-          </div>
-        </div>
-        <!-- Reel 6 -->
-        <div class="video-container reel">
-          <div class="video-thumbnail" onclick="loadVideo(this, 'ohTbmPiI9nY')">
-            <img src="https://img.youtube.com/vi/ohTbmPiI9nY/maxresdefault.jpg" alt="Reel thumbnail">
-            <div class="play-button">
-              <i class="fas fa-play"></i>
-            </div>
-            <div class="loading-spinner"></div>
-          </div>
-          <iframe class="video-iframe" id="ohTbmPiI9nY" data-src="https://www.youtube.com/embed/ohTbmPiI9nY?playsinline=1&enablejsapi=1&rel=0&modestbranding=1" frameborder="0" allowfullscreen></iframe>
-          <div class="video-info">
-            <h3>Stylish Reel 6</h3>
-            <p>Sleek visuals with catchy music.</p>
-          </div>
-        </div>
-        <!-- Reel 7 -->
-        <div class="video-container reel">
-          <div class="video-thumbnail" onclick="loadVideo(this, 'iDuyWZ-LqiU')">
-            <img src="https://img.youtube.com/vi/iDuyWZ-LqiU/maxresdefault.jpg" alt="Reel thumbnail">
-            <div class="play-button">
-              <i class="fas fa-play"></i>
-            </div>
-            <div class="loading-spinner"></div>
-          </div>
-          <iframe class="video-iframe" id="iDuyWZ-LqiU" data-src="https://www.youtube.com/embed/iDuyWZ-LqiU?playsinline=1&enablejsapi=1&rel=0&modestbranding=1" frameborder="0" allowfullscreen></iframe>
-          <div class="video-info">
-            <h3>Bold Reel 7</h3>
-            <p>High-energy clip with impact.</p>
-          </div>
-        </div>
-        <!-- Reel 8 -->
-        <div class="video-container reel">
-          <div class="video-thumbnail" onclick="loadVideo(this, 'zgzGnnUIc2w')">
-            <img src="https://img.youtube.com/vi/zgzGnnUIc2w/maxresdefault.jpg" alt="Reel thumbnail">
-            <div class="play-button">
-              <i class="fas fa-play"></i>
-            </div>
-            <div class="loading-spinner"></div>
-          </div>
-          <iframe class="video-iframe" id="zgzGnnUIc2w" data-src="https://www.youtube.com/embed/zgzGnnUIc2w?playsinline=1&enablejsapi=1&rel=0&modestbranding=1" frameborder="0" allowfullscreen></iframe>
-          <div class="video-info">
-            <h3>Fun Reel 8</h3>
-            <p>Playful edits for engagement.</p>
-          </div>
-        </div>
-        <!-- Reel 9 -->
-        <div class="video-container reel">
-          <div class="video-thumbnail" onclick="loadVideo(this, 'SmdYaUWek90')">
-            <img src="https://img.youtube.com/vi/SmdYaUWek90/maxresdefault.jpg" alt="Reel thumbnail">
-            <div class="play-button">
-              <i class="fas fa-play"></i>
-            </div>
-            <div class="loading-spinner"></div>
-          </div>
-          <iframe class="video-iframe" id="SmdYaUWek90" data-src="https://www.youtube.com/embed/SmdYaUWek90?playsinline=1&enablejsapi=1&rel=0&modestbranding=1" frameborder="0" allowfullscreen></iframe>
-          <div class="video-info">
-            <h3>Cool Reel 9</h3>
-            <p>Trendy visuals with flair.</p>
-          </div>
-        </div>
-        <!-- Reel 10 -->
-        <div class="video-container reel">
-          <div class="video-thumbnail" onclick="loadVideo(this, 'J7-XZte7AM8')">
-            <img src="https://img.youtube.com/vi/J7-XZte7AM8/maxresdefault.jpg" alt="Reel thumbnail">
-            <div class="play-button">
-              <i class="fas fa-play"></i>
-            </div>
-            <div class="loading-spinner"></div>
-          </div>
-          <iframe class="video-iframe" id="J7-XZte7AM8" data-src="https://www.youtube.com/embed/J7-XZte7AM8?playsinline=1&enablejsapi=1&rel=0&modestbranding=1" frameborder="0" allowfullscreen></iframe>
-          <div class="video-info">
-            <h3>Engaging Reel 10</h3>
-            <p>Quick story with impact.</p>
-          </div>
-        </div>
-        <!-- Reel 11 -->
-        <div class="video-container reel">
-          <div class="video-thumbnail" onclick="loadVideo(this, 'xblg7iCbJbA')">
-            <img src="https://img.youtube.com/vi/xblg7iCbJbA/maxresdefault.jpg" alt="Reel thumbnail">
-            <div class="play-button">
-              <i class="fas fa-play"></i>
-            </div>
-            <div class="loading-spinner"></div>
-          </div>
-          <iframe class="video-iframe" id="xblg7iCbJbA" data-src="https://www.youtube.com/embed/xblg7iCbJbA?playsinline=1&enablejsapi=1&rel=0&modestbranding=1" frameborder="0" allowfullscreen></iframe>
-          <div class="video-info">
-            <h3>Creative Reel 11</h3>
-            <p>Artistic edits for socials.</p>
-          </div>
-        </div>
-        <!-- Reel 12 -->
-        <div class="video-container reel">
-          <div class="video-thumbnail" onclick="loadVideo(this, '_2sLpQ5JCF0')">
-            <img src="https://img.youtube.com/vi/_2sLpQ5JCF0/maxresdefault.jpg" alt="Reel thumbnail">
-            <div class="play-button">
-              <i class="fas fa-play"></i>
-            </div>
-            <div class="loading-spinner"></div>
-          </div>
-          <iframe class="video-iframe" id="_2sLpQ5JCF0" data-src="https://www.youtube.com/embed/_2sLpQ5JCF0?playsinline=1&enablejsapi=1&rel=0&modestbranding=1" frameborder="0" allowfullscreen></iframe>
-          <div class="video-info">
-            <h3>Fun Reel 12</h3>
-            <p>Lively clip with energy.</p>
-          </div>
-        </div>
-        <!-- Reel 13 -->
-        <div class="video-container reel">
-          <div class="video-thumbnail" onclick="loadVideo(this, 'TUqvEkY-crY')">
-            <img src="https://img.youtube.com/vi/TUqvEkY-crY/maxresdefault.jpg" alt="Reel thumbnail">
-            <div class="play-button">
-              <i class="fas fa-play"></i>
-            </div>
-            <div class="loading-spinner"></div>
-          </div>
-          <iframe class="video-iframe" id="TUqvEkY-crY" data-src="https://www.youtube.com/embed/TUqvEkY-crY?playsinline=1&enablejsapi=1&rel=0&modestbranding=1" frameborder="0" allowfullscreen></iframe>
-          <div class="video-info">
-            <h3>Vivid Reel 13</h3>
-            <p>Bright visuals, quick cuts.</p>
-          </div>
-        </div>
-        <!-- Reel 14 -->
-        <div class="video-container reel">
-          <div class="video-thumbnail" onclick="loadVideo(this, 'TZolbZABcHs')">
-            <img src="https://img.youtube.com/vi/TZolbZABcHs/maxresdefault.jpg" alt="Reel thumbnail">
-            <div class="play-button">
-              <i class="fas fa-play"></i>
-            </div>
-            <div class="loading-spinner"></div>
-          </div>
-          <iframe class="video-iframe" id="TZolbZABcHs" data-src="https://www.youtube.com/embed/TZolbZABcHs?playsinline=1&enablejsapi=1&rel=0&modestbranding=1" frameborder="0" allowfullscreen></iframe>
-          <div class="video-info">
-            <h3>Trendy Reel 14</h3>
-            <p>Modern style for reels.</p>
-          </div>
-        </div>
-        <!-- Reel 15 -->
-        <div class="video-container reel">
-          <div class="video-thumbnail" onclick="loadVideo(this, 'UB1MLkUN26k')">
-            <img src="https://img.youtube.com/vi/UB1MLkUN26k/maxresdefault.jpg" alt="Reel thumbnail">
-            <div class="play-button">
-              <i class="fas fa-play"></i>
-            </div>
-            <div class="loading-spinner"></div>
-          </div>
-          <iframe class="video-iframe" id="UB1MLkUN26k" data-src="https://www.youtube.com/embed/UB1MLkUN26k?playsinline=1&enablejsapi=1&rel=0&modestbranding=1" frameborder="0" allowfullscreen></iframe>
-          <div class="video-info">
-            <h3>Dynamic Reel 15</h3>
-            <p>High-energy short video.</p>
-          </div>
-        </div>
-        <!-- Reel 16 -->
-        <div class="video-container reel">
-          <div class="video-thumbnail" onclick="loadVideo(this, 'R3wMOReSuWA')">
-            <img src="https://img.youtube.com/vi/R3wMOReSuWA/maxresdefault.jpg" alt="Reel thumbnail">
-            <div class="play-button">
-              <i class="fas fa-play"></i>
-            </div>
-            <div class="loading-spinner"></div>
-          </div>
-          <iframe class="video-iframe" id="R3wMOReSuWA" data-src="https://www.youtube.com/embed/R3wMOReSuWA?playsinline=1&enablejsapi=1&rel=0&modestbranding=1" frameborder="0" allowfullscreen></iframe>
-          <div class="video-info">
-            <h3>Creative Reel 16</h3>
-            <p>Unique edits with style.</p>
-          </div>
-        </div>
-        <!-- Reel 17 -->
-        <div class="video-container reel">
-          <div class="video-thumbnail" onclick="loadVideo(this, 'vO_8gaIGkiI')">
-            <img src="https://img.youtube.com/vi/vO_8gaIGkiI/maxresdefault.jpg" alt="Reel thumbnail">
-            <div class="play-button">
-              <i class="fas fa-play"></i>
-            </div>
-            <div class="loading-spinner"></div>
-          </div>
-          <iframe class="video-iframe" id="vO_8gaIGkiI" data-src="https://www.youtube.com/embed/vO_8gaIGkiI?playsinline=1&enablejsapi=1&rel=0&modestbranding=1" frameborder="0" allowfullscreen></iframe>
-          <div class="video-info">
-            <h3>Fun Reel 17</h3>
-            <p>Playful clip for socials.</p>
-          </div>
-        </div>
-        <!-- Reel 18 -->
-        <div class="video-container reel">
-          <div class="video-thumbnail" onclick="loadVideo(this, '0v7vVxk6Ac8')">
-            <img src="https://img.youtube.com/vi/0v7vVxk6Ac8/maxresdefault.jpg" alt="Reel thumbnail">
-            <div class="play-button">
-              <i class="fas fa-play"></i>
-            </div>
-            <div class="loading-spinner"></div>
-          </div>
-          <iframe class="video-iframe" id="0v7vVxk6Ac8" data-src="https://www.youtube.com/embed/0v7vVxk6Ac8?playsinline=1&enablejsapi=1&rel=0&modestbranding=1" frameborder="0" allowfullscreen></iframe>
-          <div class="video-info">
-            <h3>Energetic Reel 18</h3>
-            <p>Fast-paced with cool effects.</p>
-          </div>
-        </div>
-        <!-- Reel 19 -->
-        <div class="video-container reel">
-          <div class="video-thumbnail" onclick="loadVideo(this, 'zs-Tm4Iyl9g')">
-            <img src="https://img.youtube.com/vi/zs-Tm4Iyl9g/maxresdefault.jpg" alt="Reel thumbnail">
-            <div class="play-button">
-              <i class="fas fa-play"></i>
-            </div>
-            <div class="loading-spinner"></div>
-          </div>
-          <iframe class="video-iframe" id="zs-Tm4Iyl9g" data-src="https://www.youtube.com/embed/zs-Tm4Iyl9g?playsinline=1&enablejsapi=1&rel=0&modestbranding=1" frameborder="0" allowfullscreen></iframe>
-          <div class="video-info">
-            <h3>Stylish Reel 19</h3>
-            <p>Sleek edits with vibe.</p>
-          </div>
-        </div>
-        <!-- Reel 20 -->
-        <div class="video-container reel">
-          <div class="video-thumbnail" onclick="loadVideo(this, 'XAEr0FMEHqw')">
-            <img src="https://img.youtube.com/vi/XAEr0FMEHqw/maxresdefault.jpg" alt="Reel thumbnail">
-            <div class="play-button">
-              <i class="fas fa-play"></i>
-            </div>
-            <div class="loading-spinner"></div>
-          </div>
-          <iframe class="video-iframe" id="XAEr0FMEHqw" data-src="https://www.youtube.com/embed/XAEr0FMEHqw?playsinline=1&enablejsapi=1&rel=0&modestbranding=1" frameborder="0" allowfullscreen></iframe>
-          <div class="video-info">
-            <h3>Bold Reel 20</h3>
-            <p>High-impact short clip.</p>
-          </div>
-        </div>
-        <!-- Reel 21 -->
-        <div class="video-container reel">
-          <div class="video-thumbnail" onclick="loadVideo(this, 'eroOGV_7z6M')">
-            <img src="https://img.youtube.com/vi/eroOGV_7z6M/maxresdefault.jpg" alt="Reel thumbnail">
-            <div class="play-button">
-              <i class="fas fa-play"></i>
-            </div>
-            <div class="loading-spinner"></div>
-          </div>
-          <iframe class="video-iframe" id="eroOGV_7z6M" data-src="https://www.youtube.com/embed/eroOGV_7z6M?playsinline=1&enablejsapi=1&rel=0&modestbranding=1" frameborder="0" allowfullscreen></iframe>
-          <div class="video-info">
-            <h3>Creative Reel 21</h3>
-            <p>Artistic short video.</p>
-          </div>
-        </div>
-        <!-- Reel 22 -->
-        <div class="video-container reel">
-          <div class="video-thumbnail" onclick="loadVideo(this, 'u-qcXQpy1kA')">
-            <img src="https://img.youtube.com/vi/u-qcXQpy1kA/maxresdefault.jpg" alt="Reel thumbnail">
-            <div class="play-button">
-              <i class="fas fa-play"></i>
-            </div>
-            <div class="loading-spinner"></div>
-          </div>
-          <iframe class="video-iframe" id="u-qcXQpy1kA" data-src="https://www.youtube.com/embed/u-qcXQpy1kA?playsinline=1&enablejsapi=1&rel=0&modestbranding=1" frameborder="0" allowfullscreen></iframe>
-          <div class="video-info">
-            <h3>Fun Reel 22</h3>
-            <p>Engaging clip for socials.</p>
-          </div>
-        </div>
-        <!-- Reel 23 -->
-        <div class="video-container reel">
-          <div class="video-thumbnail" onclick="loadVideo(this, 'fUOWUrm2SfE')">
-            <img src="https://img.youtube.com/vi/fUOWUrm2SfE/maxresdefault.jpg" alt="Reel thumbnail">
-            <div class="play-button">
-              <i class="fas fa-play"></i>
-            </div>
-            <div class="loading-spinner"></div>
-          </div>
-          <iframe class="video-iframe" id="fUOWUrm2SfE" data-src="https://www.youtube.com/embed/fUOWUrm2SfE?playsinline=1&enablejsapi=1&rel=0&modestbranding=1" frameborder="0" allowfullscreen></iframe>
-          <div class="video-info">
-            <h3>Energetic Reel 23</h3>
-            <p>Fast-paced with flair.</p>
-          </div>
-        </div>
-        <!-- Reel 24 -->
-        <div class="video-container reel">
-          <div class="video-thumbnail" onclick="loadVideo(this, 'MOz3wMkHIXI')">
-            <img src="https://img.youtube.com/vi/MOz3wMkHIXI/maxresdefault.jpg" alt="Reel thumbnail">
-            <div class="play-button">
-              <i class="fas fa-play"></i>
-            </div>
-            <div class="loading-spinner"></div>
-          </div>
-          <iframe class="video-iframe" id="MOz3wMkHIXI" data-src="https://www.youtube.com/embed/MOz3wMkHIXI?playsinline=1&enablejsapi=1&rel=0&modestbranding=1" frameborder="0" allowfullscreen></iframe>
-          <div class="video-info">
-            <h3>Stylish Reel 24</h3>
-            <p>Sleek visuals with vibe.</p>
-          </div>
-        </div>
-        <!-- Reel 25 -->
-        <div class="video-container reel">
-          <div class="video-thumbnail" onclick="loadVideo(this, '1QFqUwX_wV8')">
-            <img src="https://img.youtube.com/vi/1QFqUwX_wV8/maxresdefault.jpg" alt="Reel thumbnail">
-            <div class="play-button">
-              <i class="fas fa-play"></i>
-            </div>
-            <div class="loading-spinner"></div>
-          </div>
-          <iframe class="video-iframe" id="1QFqUwX_wV8" data-src="https://www.youtube.com/embed/1QFqUwX_wV8?playsinline=1&enablejsapi=1&rel=0&modestbranding=1" frameborder="0" allowfullscreen></iframe>
-          <div class="video-info">
-            <h3>Bold Reel 25</h3>
-            <p>High-impact short clip.</p>
-          </div>
-        </div>
-        <!-- Reel 26 -->
-        <div class="video-container reel">
-          <div class="video-thumbnail" onclick="loadVideo(this, 'blMAN6IJsuA')">
-            <img src="https://img.youtube.com/vi/blMAN6IJsuA/maxresdefault.jpg" alt="Reel thumbnail">
-            <div class="play-button">
-              <i class="fas fa-play"></i>
-            </div>
-            <div class="loading-spinner"></div>
-          </div>
-          <iframe class="video-iframe" id="blMAN6IJsuA" data-src="https://www.youtube.com/embed/blMAN6IJsuA?playsinline=1&enablejsapi=1&rel=0&modestbranding=1" frameborder="0" allowfullscreen></iframe>
-          <div class="video-info">
-            <h3>Creative Reel 26</h3>
-            <p>Artistic short video.</p>
-          </div>
-        </div>
-        <!-- Reel 27 -->
-        <div class="video-container reel">
-          <div class="video-thumbnail" onclick="loadVideo(this, '3hGjxQ3KcN0')">
-            <img src="https://img.youtube.com/vi/3hGjxQ3KcN0/maxresdefault.jpg" alt="Reel thumbnail">
-            <div class="play-button">
-              <i class="fas fa-play"></i>
-            </div>
-            <div class="loading-spinner"></div>
-          </div>
-          <iframe class="video-iframe" id="3hGjxQ3KcN0" data-src="https://www.youtube.com/embed/3hGjxQ3KcN0?playsinline=1&enablejsapi=1&rel=0&modestbranding=1" frameborder="0" allowfullscreen></iframe>
-          <div class="video-info">
-            <h3>Fun Reel 27</h3>
-            <p>Engaging clip for socials.</p>
-          </div>
-        </div>
-        <!-- Reel 28 -->
-        <div class="video-container reel">
-          <div class="video-thumbnail" onclick="loadVideo(this, 'ErSTWaQ3eWw')">
-            <img src="https://img.youtube.com/vi/ErSTWaQ3eWw/maxresdefault.jpg" alt="Reel thumbnail">
-            <div class="play-button">
-              <i class="fas fa-play"></i>
-            </div>
-            <div class="loading-spinner"></div>
-          </div>
-          <iframe class="video-iframe" id="ErSTWaQ3eWw" data-src="https://www.youtube.com/embed/ErSTWaQ3eWw?playsinline=1&enablejsapi=1&rel=0&modestbranding=1" frameborder="0" allowfullscreen></iframe>
-          <div class="video-info">
-            <h3>Energetic Reel 28</h3>
-            <p>Fast-paced with flair.</p>
-          </div>
-        </div>
-        <!-- Reel 29 -->
-        <div class="video-container reel">
-          <div class="video-thumbnail" onclick="loadVideo(this, 'zOdR0W9llXk')">
-            <img src="https://img.youtube.com/vi/zOdR0W9llXk/maxresdefault.jpg" alt="Reel thumbnail">
-            <div class="play-button">
-              <i class="fas fa-play"></i>
-            </div>
-            <div class="loading-spinner"></div>
-          </div>
-          <iframe class="video-iframe" id="zOdR0W9llXk" data-src="https://www.youtube.com/embed/zOdR0W9llXk?playsinline=1&enablejsapi=1&rel=0&modestbranding=1" frameborder="0" allowfullscreen></iframe>
-          <div class="video-info">
-            <h3>Stylish Reel 29</h3>
-            <p>Sleek visuals with vibe.</p>
-          </div>
-        </div>
-        <!-- Reel 30 -->
-        <div class="video-container reel">
-          <div class="video-thumbnail" onclick="loadVideo(this, 'HFf5mRtTpBk')">
-            <img src="https://img.youtube.com/vi/HFf5mRtTpBk/maxresdefault.jpg" alt="Reel thumbnail">
-            <div class="play-button">
-              <i class="fas fa-play"></i>
-            </div>
-            <div class="loading-spinner"></div>
-          </div>
-          <iframe class="video-iframe" id="HFf5mRtTpBk" data-src="https://www.youtube.com/embed/HFf5mRtTpBk?playsinline=1&enablejsapi=1&rel=0&modestbranding=1" frameborder="0" allowfullscreen></iframe>
-          <div class="video-info">
-            <h3>Bold Reel 30</h3>
-            <p>High-impact short clip.</p>
-          </div>
-        </div>
-        <!-- Reel 31 -->
-        <div class="video-container reel">
-          <div class="video-thumbnail" onclick="loadVideo(this, 'IWvseyrV0B4')">
-            <img src="https://img.youtube.com/vi/IWvseyrV0B4/maxresdefault.jpg" alt="Reel thumbnail">
-            <div class="play-button">
-              <i class="fas fa-play"></i>
-            </div>
-            <div class="loading-spinner"></div>
-          </div>
-          <iframe class="video-iframe" id="IWvseyrV0B4" data-src="https://www.youtube.com/embed/IWvseyrV0B4?playsinline=1&enablejsapi=1&rel=0&modestbranding=1" frameborder="0" allowfullscreen></iframe>
-          <div class="video-info">
-            <h3>Creative Reel 31</h3>
-            <p>Artistic short video.</p>
-          </div>
-        </div>
-        <!-- Reel 32 -->
-        <div class="video-container reel">
-          <div class="video-thumbnail" onclick="loadVideo(this, 'cE_Vs4SzZx4')">
-            <img src="https://img.youtube.com/vi/cE_Vs4SzZx4/maxresdefault.jpg" alt="Reel thumbnail">
-            <div class="play-button">
-              <i class="fas fa-play"></i>
-            </div>
-            <div class="loading-spinner"></div>
-          </div>
-          <iframe class="video-iframe" id="cE_Vs4SzZx4" data-src="https://www.youtube.com/embed/cE_Vs4SzZx4?playsinline=1&enablejsapi=1&rel=0&modestbranding=1" frameborder="0" allowfullscreen></iframe>
-          <div class="video-info">
-            <h3>Fun Reel 32</h3>
-            <p>Engaging clip for socials.</p>
-          </div>
-        </div>
-        <!-- Reel 33 -->
-        <div class="video-container reel">
-          <div class="video-thumbnail" onclick="loadVideo(this, 'ZzT2ZeObP3Q')">
-            <img src="https://img.youtube.com/vi/ZzT2ZeObP3Q/maxresdefault.jpg" alt="Reel thumbnail">
-            <div class="play-button">
-              <i class="fas fa-play"></i>
-            </div>
-            <div class="loading-spinner"></div>
-          </div>
-          <iframe class="video-iframe" id="ZzT2ZeObP3Q" data-src="https://www.youtube.com/embed/ZzT2ZeObP3Q?playsinline=1&enablejsapi=1&rel=0&modestbranding=1" frameborder="0" allowfullscreen></iframe>
-          <div class="video-info">
-            <h3>Energetic Reel 33</h3>
-            <p>Fast-paced with flair.</p>
-          </div>
-        </div>
+        <!-- Each Reels Embed -->
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/mPTEopQE8cY" allowfullscreen></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/5NT6UivfxT4" allowfullscreen></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/XXyTU039BZs" allowfullscreen></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/mKGG0XKW81w" allowfullscreen></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/btZ00jzh8Hk" allowfullscreen></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/57Y6X28UwSY" allowfullscreen></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/zgzGnnUIc2w" allowfullscreen></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/CmJDDnECrcU" allowfullscreen></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/wERgcX2LR6o" allowfullscreen></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/muCefugE6RE" allowfullscreen></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/Mq8Z95oobIQ" allowfullscreen></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/-5dXDlmO1h0" allowfullscreen></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/YgNW3i6HVQ0" allowfullscreen></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/Y6K4GkzN9lM" allowfullscreen></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/5GZbX-T8Kyc" allowfullscreen></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/kLL0UooX5Pg" allowfullscreen></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/EZTWEX-pDXY" allowfullscreen></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/K0MqlYhd7WQ" allowfullscreen></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/iuEul7ZLhe0" allowfullscreen></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/ohTbmPiI9nY" allowfullscreen></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/iDuyWZ-LqiU" allowfullscreen></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/SmdYaUWek90" allowfullscreen></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/xblg7iCbJbA" allowfullscreen></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/TUqvEkY-crY" allowfullscreen></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/TZolbZABcHs" allowfullscreen></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/UB1MLkUN26k" allowfullscreen></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/R3wMOReSuWA" allowfullscreen></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/vO_8gaIGkiI" allowfullscreen></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/0v7vVxk6Ac8" allowfullscreen></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/zs-Tm4Iyl9g" allowfullscreen></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/XAEr0FMEHqw" allowfullscreen></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/eroOGV_7z6M" allowfullscreen></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/u-qcXQpy1kA" allowfullscreen></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/fUOWUrm2SfE" allowfullscreen></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/MOz3wMkHIXI" allowfullscreen></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/1QFqUwX_wV8" allowfullscreen></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/3hGjxQ3KcN0" allowfullscreen></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/ErSTWaQ3eWw" allowfullscreen></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/zOdR0W9llXk" allowfullscreen></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/HFf5mRtTpBk" allowfullscreen></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/IWvseyrV0B4" allowfullscreen></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/cE_Vs4SzZx4" allowfullscreen></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/ZzT2ZeObP3Q" allowfullscreen></iframe></div>
       </div>
     </section>
 
     <!-- Long Videos Section -->
-    <section class="mb-16 video-section" id="long-videos">
-      <h2 class="section-title text-cyan-400">🎬 Long Videos (16:9)</h2>
+    <section>
+      <h2 class="section-title text-indigo-400">📺 Long Videos (16:9)</h2>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        <!-- Video 1 -->
-        <div class="video-container wide">
-          <div class="video-thumbnail" onclick="loadVideo(this, 'irBkHvymjU4')">
-            <img src="https://img.youtube.com/vi/irBkHvymjU4/maxresdefault.jpg" alt="Video thumbnail">
-            <div class="play-button">
-              <i class="fas fa-play"></i>
-            </div>
-            <div class="loading-spinner"></div>
-          </div>
-          <iframe class="video-iframe" id="irBkHvymjU4" data-src="https://www.youtube.com/embed/irBkHvymjU4?playsinline=1&enablejsapi=1&rel=0&modestbranding=1" frameborder="0" allowfullscreen></iframe>
-          <div class="video-info">
-            <h3>Story Video 1</h3>
-            <p>In-depth storytelling with edits.</p>
-          </div>
-        </div>
-        <!-- Video 2 -->
-        <div class="video-container wide">
-          <div class="video-thumbnail" onclick="loadVideo(this, '9LMSJ13U07Q')">
-            <img src="https://img.youtube.com/vi/9LMSJ13U07Q/maxresdefault.jpg" alt="Video thumbnail">
-            <div class="play-button">
-              <i class="fas fa-play"></i>
-            </div>
-            <div class="loading-spinner"></div>
-          </div>
-          <iframe class="video-iframe" id="9LMSJ13U07Q" data-src="https://www.youtube.com/embed/9LMSJ13U07Q?playsinline=1&enablejsapi=1&rel=0&modestbranding=1" frameborder="0" allowfullscreen></iframe>
-          <div class="video-info">
-            <h3>Cinematic Video 2</h3>
-            <p>Epic visuals with music.</p>
-          </div>
-        </div>
-        <!-- Video 3 -->
-        <div class="video-container wide">
-          <div class="video-thumbnail" onclick="loadVideo(this, 's05gy0cG7x0')">
-            <img src="https://img.youtube.com/vi/s05gy0cG7x0/maxresdefault.jpg" alt="Video thumbnail">
-            <div class="play-button">
-              <i class="fas fa-play"></i>
-            </div>
-            <div class="loading-spinner"></div>
-          </div>
-          <iframe class="video-iframe" id="s05gy0cG7x0" data-src="https://www.youtube.com/embed/s05gy0cG7x0?playsinline=1&enablejsapi=1&rel=0&modestbranding=1" frameborder="0" allowfullscreen></iframe>
-          <div class="video-info">
-            <h3>Narrative Video 3</h3>
-            <p>Engaging story with effects.</p>
-          </div>
-        </div>
-        <!-- Video 4 -->
-        <div class="video-container wide">
-          <div class="video-thumbnail" onclick="loadVideo(this, 'y7cosGjPAMA')">
-            <img src="https://img.youtube.com/vi/y7cosGjPAMA/maxresdefault.jpg" alt="Video thumbnail">
-            <div class="play-button">
-              <i class="fas fa-play"></i>
-            </div>
-            <div class="loading-spinner"></div>
-          </div>
-          <iframe class="video-iframe" id="y7cosGjPAMA" data-src="https://www.youtube.com/embed/y7cosGjPAMA?playsinline=1&enablejsapi=1&rel=0&modestbranding=1" frameborder="0" allowfullscreen></iframe>
-          <div class="video-info">
-            <h3>Promo Video 4</h3>
-            <p>Brand-focused long video.</p>
-          </div>
-        </div>
-        <!-- Video 5 -->
-        <div class="video-container wide">
-          <div class="video-thumbnail" onclick="loadVideo(this, 'ZigkaWzRi14')">
-            <img src="https://img.youtube.com/vi/ZigkaWzRi14/maxresdefault.jpg" alt="Video thumbnail">
-            <div class="play-button">
-              <i class="fas fa-play"></i>
-            </div>
-            <div class="loading-spinner"></div>
-          </div>
-          <iframe class="video-iframe" id="ZigkaWzRi14" data-src="https://www.youtube.com/embed/ZigkaWzRi14?playsinline=1&enablejsapi=1&rel=0&modestbranding=1" frameborder="0" allowfullscreen></iframe>
-          <div class="video-info">
-            <h3>Story Video 5</h3>
-            <p>Emotional narrative edit.</p>
-          </div>
-        </div>
-        <!-- Video 6 -->
-        <div class="video-container wide">
-          <div class="video-thumbnail" onclick="loadVideo(this, 'gQdpn8shoVI')">
-            <img src="https://img.youtube.com/vi/gQdpn8shoVI/maxresdefault.jpg" alt="Video thumbnail">
-            <div class="play-button">
-              <i class="fas fa-play"></i>
-            </div>
-            <div class="loading-spinner"></div>
-          </div>
-          <iframe class="video-iframe" id="gQdpn8shoVI" data-src="https://www.youtube.com/embed/gQdpn8shoVI?playsinline=1&enablejsapi=1&rel=0&modestbranding=1" frameborder="0" allowfullscreen></iframe>
-          <div class="video-info">
-            <h3>Cinematic Video 6</h3>
-            <p>Visually stunning edits.</p>
-          </div>
-        </div>
-        <!-- Video 7 -->
-        <div class="video-container wide">
-          <div class="video-thumbnail" onclick="loadVideo(this, '-FyHB4AVjPY')">
-            <img src="https://img.youtube.com/vi/-FyHB4AVjPY/maxresdefault.jpg" alt="Video thumbnail">
-            <div class="play-button">
-              <i class="fas fa-play"></i>
-            </div>
-            <div class="loading-spinner"></div>
-          </div>
-          <iframe class="video-iframe" id="-FyHB4AVjPY" data-src="https://www.youtube.com/embed/-FyHB4AVjPY?playsinline=1&enablejsapi=1&rel=0&modestbranding=1" frameborder="0" allowfullscreen></iframe>
-          <div class="video-info">
-            <h3>Narrative Video 7</h3>
-            <p>Story-driven long video.</p>
-          </div>
-        </div>
-        <!-- Video 8 -->
-        <div class="video-container wide">
-          <div class="video-thumbnail" onclick="loadVideo(this, 'ZveVW6ATqbk')">
-            <img src="https://img.youtube.com/vi/ZveVW6ATqbk/maxresdefault.jpg" alt="Video thumbnail">
-            <div class="play-button">
-              <i class="fas fa-play"></i>
-            </div>
-            <div class="loading-spinner"></div>
-          </div>
-          <iframe class="video-iframe" id="ZveVW6ATqbk" data-src="https://www.youtube.com/embed/ZveVW6ATqbk?playsinline=1&enablejsapi=1&rel=0&modestbranding=1" frameborder="0" allowfullscreen></iframe>
-          <div class="video-info">
-            <h3>Promo Video 8</h3>
-            <p>Brand-focused storytelling.</p>
-          </div>
-        </div>
-        <!-- Video 9 -->
-        <div class="video-container wide">
-          <div class="video-thumbnail" onclick="loadVideo(this, 'kP9wVxXbylc')">
-            <img src="https://img.youtube.com/vi/kP9wVxXbylc/maxresdefault.jpg" alt="Video thumbnail">
-            <div class="play-button">
-              <i class="fas fa-play"></i>
-            </div>
-            <div class="loading-spinner"></div>
-          </div>
-          <iframe class="video-iframe" id="kP9wVxXbylc" data-src="https://www.youtube.com/embed/kP9wVxXbylc?playsinline=1&enablejsapi=1&rel=0&modestbranding=1" frameborder="0" allowfullscreen></iframe>
-          <div class="video-info">
-            <h3>Story Video 9</h3>
-            <p>Emotional long-form edit.</p>
-          </div>
-        </div>
-        <!-- Video 10 -->
-        <div class="video-container wide">
-          <div class="video-thumbnail" onclick="loadVideo(this, 'BSofNeEIJyo')">
-            <img src="https://img.youtube.com/vi/BSofNeEIJyo/maxresdefault.jpg" alt="Video thumbnail">
-            <div class="play-button">
-              <i class="fas fa-play"></i>
-            </div>
-            <div class="loading-spinner"></div>
-          </div>
-          <iframe class="video-iframe" id="BSofNeEIJyo" data-src="https://www.youtube.com/embed/BSofNeEIJyo?playsinline=1&enablejsapi=1&rel=0&modestbranding=1" frameborder="0" allowfullscreen></iframe>
-          <div class="video-info">
-            <h3>Cinematic Video 10</h3>
-            <p>Visually rich storytelling.</p>
-          </div>
-        </div>
-        <!-- Video 11 -->
-        <div class="video-container wide">
-          <div class="video-thumbnail" onclick="loadVideo(this, 'p2HSMVgxIy0')">
-            <img src="https://img.youtube.com/vi/p2HSMVgxIy0/maxresdefault.jpg" alt="Video thumbnail">
-            <div class="play-button">
-              <i class="fas fa-play"></i>
-            </div>
-            <div class="loading-spinner"></div>
-          </div>
-          <iframe class="video-iframe" id="p2HSMVgxIy0" data-src="https://www.youtube.com/embed/p2HSMVgxIy0?playsinline=1&enablejsapi=1&rel=0&modestbranding=1" frameborder="0" allowfullscreen></iframe>
-          <div class="video-info">
-            <h3>Narrative Video 11</h3>
-            <p>Engaging long-form story.</p>
-          </div>
-        </div>
-        <!-- Video 12 -->
-        <div class="video-container wide">
-          <div class="video-thumbnail" onclick="loadVideo(this, 'ytrsomynt0E')">
-            <img src="https://img.youtube.com/vi/ytrsomynt0E/maxresdefault.jpg" alt="Video thumbnail">
-            <div class="play-button">
-              <i class="fas fa-play"></i>
-            </div>
-            <div class="loading-spinner"></div>
-          </div>
-          <iframe class="video-iframe" id="ytrsomynt0E" data-src="https://www.youtube.com/embed/ytrsomynt0E?playsinline=1&enablejsapi=1&rel=0&modestbranding=1" frameborder="0" allowfullscreen></iframe>
-          <div class="video-info">
-            <h3>Promo Video 12</h3>
-            <p>Brand-focused long video.</p>
-          </div>
-        </div>
-        <!-- Video 13 -->
-        <div class="video-container wide">
-          <div class="video-thumbnail" onclick="loadVideo(this, 'XQi_8Pah0gM')">
-            <img src="https://img.youtube.com/vi/XQi_8Pah0gM/maxresdefault.jpg" alt="Video thumbnail">
-            <div class="play-button">
-              <i class="fas fa-play"></i>
-            </div>
-            <div class="loading-spinner"></div>
-          </div>
-          <iframe class="video-iframe" id="XQi_8Pah0gM" data-src="https://www.youtube.com/embed/XQi_8Pah0gM?playsinline=1&enablejsapi=1&rel=0&modestbranding=1" frameborder="0" allowfullscreen></iframe>
-          <div class="video-info">
-            <h3>Story Video 13</h3>
-            <p>Emotional narrative edit.</p>
-          </div>
-        </div>
-        <!-- Video 14 -->
-        <div class="video-container wide">
-          <div class="video-thumbnail" onclick="loadVideo(this, 'Wr41HDZD49Y')">
-            <img src="https://img.youtube.com/vi/Wr41HDZD49Y/maxresdefault.jpg" alt="Video thumbnail">
-            <div class="play-button">
-              <i class="fas fa-play"></i>
-            </div>
-            <div class="loading-spinner"></div>
-          </div>
-          <iframe class="video-iframe" id="Wr41HDZD49Y" data-src="https://www.youtube.com/embed/Wr41HDZD49Y?playsinline=1&enablejsapi=1&rel=0&modestbranding=1" frameborder="0" allowfullscreen></iframe>
-          <div class="video-info">
-            <h3>Cinematic Video 14</h3>
-            <p>Visually stunning edits.</p>
-          </div>
-        </div>
-        <!-- Video 15 -->
-        <div class="video-container wide">
-          <div class="video-thumbnail" onclick="loadVideo(this, 'ZB0gzq64qrs')">
-            <img src="https://img.youtube.com/vi/ZB0gzq64qrs/maxresdefault.jpg" alt="Video thumbnail">
-            <div class="play-button">
-              <i class="fas fa-play"></i>
-            </div>
-            <div class="loading-spinner"></div>
-          </div>
-          <iframe class="video-iframe" id="ZB0gzq64qrs" data-src="https://www.youtube.com/embed/ZB0gzq64qrs?playsinline=1&enablejsapi=1&rel=0&modestbranding=1" frameborder="0" allowfullscreen></iframe>
-          <div class="video-info">
-            <h3>Narrative Video 15</h3>
-            <p>Story-driven long video.</p>
-          </div>
-        </div>
-        <!-- Video 16 -->
-        <div class="video-container wide">
-          <div class="video-thumbnail" onclick="loadVideo(this, 'yCH2bTPGJrc')">
-            <img src="https://img.youtube.com/vi/yCH2bTPGJrc/maxresdefault.jpg" alt="Video thumbnail">
-            <div class="play-button">
-              <i class="fas fa-play"></i>
-            </div>
-            <div class="loading-spinner"></div>
-          </div>
-          <iframe class="video-iframe" id="yCH2bTPGJrc" data-src="https://www.youtube.com/embed/yCH2bTPGJrc?playsinline=1&enablejsapi=1&rel=0&modestbranding=1" frameborder="0" allowfullscreen></iframe>
-          <div class="video-info">
-            <h3>Promo Video 16</h3>
-            <p>Brand-focused storytelling.</p>
-          </div>
-        </div>
-        <!-- Video 17 -->
-        <div class="video-container wide">
-          <div class="video-thumbnail" onclick="loadVideo(this, 'PrQgGEFCQik')">
-            <img src="https://img.youtube.com/vi/PrQgGEFCQik/maxresdefault.jpg" alt="Video thumbnail">
-            <div class="play-button">
-              <i class="fas fa-play"></i>
-            </div>
-            <div class="loading-spinner"></div>
-          </div>
-          <iframe class="video-iframe" id="PrQgGEFCQik" data-src="https://www.youtube.com/embed/PrQgGEFCQik?playsinline=1&enablejsapi=1&rel=0&modestbranding=1" frameborder="0" allowfullscreen></iframe>
-          <div class="video-info">
-            <h3>Story Video 17</h3>
-            <p>Emotional long-form edit.</p>
-          </div>
-        </div>
-        <!-- Video 18 -->
-        <div class="video-container wide">
-          <div class="video-thumbnail" onclick="loadVideo(this, 'xgMg_2zd9mo')">
-            <img src="https://img.youtube.com/vi/xgMg_2zd9mo/maxresdefault.jpg" alt="Video thumbnail">
-            <div class="play-button">
-              <i class="fas fa-play"></i>
-            </div>
-            <div class="loading-spinner"></div>
-          </div>
-          <iframe class="video-iframe" id="xgMg_2zd9mo" data-src="https://www.youtube.com/embed/xgMg_2zd9mo?playsinline=1&enablejsapi=1&rel=0&modestbranding=1" frameborder="0" allowfullscreen></iframe>
-          <div class="video-info">
-            <h3>Cinematic Video 18</h3>
-            <p>Visually rich storytelling.</p>
-          </div>
-        </div>
-        <!-- Video 19 -->
-        <div class="video-container wide">
-          <div class="video-thumbnail" onclick="loadVideo(this, 'gYxUAgYEq4g')">
-            <img src="https://img.youtube.com/vi/gYxUAgYEq4g/maxresdefault.jpg" alt="Video thumbnail">
-            <div class="play-button">
-              <i class="fas fa-play"></i>
-            </div>
-            <div class="loading-spinner"></div>
-          </div>
-          <iframe class="video-iframe" id="gYxUAgYEq4g" data-src="https://www.youtube.com/embed/gYxUAgYEq4g?playsinline=1&enablejsapi=1&rel=0&modestbranding=1" frameborder="0" allowfullscreen></iframe>
-          <div class="video-info">
-            <h3>Narrative Video 19</h3>
-            <p>Engaging long-form story.</p>
-          </div>
-        </div>
+        <!-- Each Long Video Embed -->
+        <div class="video-wrapper wide"><iframe src="https://www.youtube.com/embed/irBkHvymjU4" allowfullscreen></iframe></div>
+        <div class="video-wrapper wide"><iframe src="https://www.youtube.com/embed/9LMSJ13U07Q" allowfullscreen></iframe></div>
+        <div class="video-wrapper wide"><iframe src="https://www.youtube.com/embed/s05gy0cG7x0" allowfullscreen></iframe></div>
+        <div class="video-wrapper wide"><iframe src="https://www.youtube.com/embed/y7cosGjPAMA" allowfullscreen></iframe></div>
+        <div class="video-wrapper wide"><iframe src="https://www.youtube.com/embed/_hv_1wRc4yk" allowfullscreen></iframe></div>
+        <div class="video-wrapper wide"><iframe src="https://www.youtube.com/embed/YYEB74-WGz4" allowfullscreen></iframe></div>
+        <div class="video-wrapper wide"><iframe src="https://www.youtube.com/embed/TkpNlH-Kj6U" allowfullscreen></iframe></div>
+        <div class="video-wrapper wide"><iframe src="https://www.youtube.com/embed/t5TNy6ZYJgk" allowfullscreen></iframe></div>
+        <div class="video-wrapper wide"><iframe src="https://www.youtube.com/embed/0QPRJYFtY0o" allowfullscreen></iframe></div>
+        <div class="video-wrapper wide"><iframe src="https://www.youtube.com/embed/36hIbj9Z1KU" allowfullscreen></iframe></div>
+        <div class="video-wrapper wide"><iframe src="https://www.youtube.com/embed/zOVMR20dZBA" allowfullscreen></iframe></div>
+        <div class="video-wrapper wide"><iframe src="https://www.youtube.com/embed/NEDnBM4msT4" allowfullscreen></iframe></div>
+        <div class="video-wrapper wide"><iframe src="https://www.youtube.com/embed/IsUbLzChnQw" allowfullscreen></iframe></div>
+        <div class="video-wrapper wide"><iframe src="https://www.youtube.com/embed/mQF2-ryj2xg" allowfullscreen></iframe></div>
+        <div class="video-wrapper wide"><iframe src="https://www.youtube.com/embed/nUhhT7BMosg" allowfullscreen></iframe></div>
+        <div class="video-wrapper wide"><iframe src="https://www.youtube.com/embed/k4wnGOLm93E" allowfullscreen></iframe></div>
+        <div class="video-wrapper wide"><iframe src="https://www.youtube.com/embed/ZigkaWzRi14" allowfullscreen></iframe></div>
+        <div class="video-wrapper wide"><iframe src="https://www.youtube.com/embed/gQdpn8shoVI" allowfullscreen></iframe></div>
+        <div class="video-wrapper wide"><iframe src="https://www.youtube.com/embed/ZveVW6ATqbk" allowfullscreen></iframe></div>
+        <div class="video-wrapper wide"><iframe src="https://www.youtube.com/embed/kP9wVxXbylc" allowfullscreen></iframe></div>
+        <div class="video-wrapper wide"><iframe src="https://www.youtube.com/embed/BSofNeEIJyo" allowfullscreen></iframe></div>
+        <div class="video-wrapper wide"><iframe src="https://www.youtube.com/embed/p2HSMVgxIy0" allowfullscreen></iframe></div>
+        <div class="video-wrapper wide"><iframe src="https://www.youtube.com/embed/ytrsomynt0E" allowfullscreen></iframe></div>
+        <div class="video-wrapper wide"><iframe src="https://www.youtube.com/embed/XQi_8Pah0gM" allowfullscreen></iframe></div>
+        <div class="video-wrapper wide"><iframe src="https://www.youtube.com/embed/Wr41HDZD49Y" allowfullscreen></iframe></div>
+        <div class="video-wrapper wide"><iframe src="https://www.youtube.com/embed/ZB0gzq64qrs" allowfullscreen></iframe></div>
+        <div class="video-wrapper wide"><iframe src="https://www.youtube.com/embed/yCH2bTPGJrc" allowfullscreen></iframe></div>
+        <div class="video-wrapper wide"><iframe src="https://www.youtube.com/embed/PrQgGEFCQik" allowfullscreen></iframe></div>
+        <div class="video-wrapper wide"><iframe src="https://www.youtube.com/embed/xgMg_2zd9mo" allowfullscreen></iframe></div>
+        <div class="video-wrapper wide"><iframe src="https://www.youtube.com/embed/gYxUAgYEq4g" allowfullscreen></iframe></div>
       </div>
     </section>
   </div>
 
-  <!-- Back-to-Top Button -->
-  <div class="back-to-top" onclick="scrollToTop()">
-    <i class="fas fa-arrow-up"></i>
-  </div>
-
-  <!-- Footer Start -->
   <footer>
     <div class="footer-social">
-      <a href="#" data-tooltip="Instagram"><i class="fab fa-instagram"></i></a>
-      <a href="#" data-tooltip="YouTube"><i class="fab fa-youtube"></i></a>
-      <a href="#" data-tooltip="LinkedIn"><i class="fab fa-linkedin"></i></a>
-      <a href="#" data-tooltip="Twitter"><i class="fab fa-twitter"></i></a>
+      <a href="https://wa.me/917989241791" target="_blank"><i class="fab fa-whatsapp"></i></a>
+      <a href="https://t.me/jasyaediting" target="_blank"><i class="fab fa-telegram"></i></a>
+      <a href="https://www.instagram.com/designwith_bunny" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.linkedin.com/in/jashwanth-parikirala-9a68b4269" target="_blank"><i class="fab fa-linkedin-in"></i></a>
     </div>
     <p class="copyright">© 2025 Design With Bunny. All rights reserved.</p>
   </footer>
-  <!-- Footer End -->
-
-  <script>
-    // Load Video
-    function loadVideo(thumbnail, videoId) {
-      const iframe = document.getElementById(videoId);
-      const thumbnailDiv = thumbnail;
-      const spinner = thumbnail.querySelector('.loading-spinner');
-      
-      // Show spinner
-      spinner.style.display = 'block';
-      thumbnail.querySelector('.play-button').style.display = 'none';
-      
-      // Load iframe source
-      if (!iframe.src) {
-        iframe.src = iframe.getAttribute('data-src');
-      }
-      
-      // When iframe loads, hide thumbnail and spinner
-      iframe.onload = () => {
-        iframe.classList.add('active');
-        thumbnailDiv.style.display = 'none';
-        spinner.style.display = 'none';
-      };
-    }
-
-    // Filter Videos
-    function filterVideos(type) {
-      const reelsSection = document.getElementById('reels');
-      const longVideosSection = document.getElementById('long-videos');
-      const filterButtons = document.querySelectorAll('.filter-btn');
-      
-      filterButtons.forEach(btn => btn.classList.remove('active'));
-      event.target.classList.add('active');
-      
-      if (type === 'all') {
-        reelsSection.style.display = 'block';
-        longVideosSection.style.display = 'block';
-      } else if (type === 'reel') {
-        reelsSection.style.display = 'block';
-        longVideosSection.style.display = 'none';
-      } else if (type === 'wide') {
-        reelsSection.style.display = 'none';
-        longVideosSection.style.display = 'block';
-      }
-    }
-
-    // Theme Toggle
-    function toggleTheme() {
-      document.body.classList.toggle('light-mode');
-      const themeIcon = document.querySelector('.theme-toggle i');
-      themeIcon.classList.toggle('fa-moon');
-      themeIcon.classList.toggle('fa-sun');
-    }
-
-    // Back-to-Top Scroll
-    function scrollToTop() {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    // Show/Hide Back-to-Top Button
-    window.addEventListener('scroll', () => {
-      const backToTop = document.querySelector('.back-to-top');
-      if (window.scrollY > 300) {
-        backToTop.classList.add('show');
-      } else {
-        backToTop.classList.remove('show');
-      }
-    });
-  </script>
 </body>
 </html>
